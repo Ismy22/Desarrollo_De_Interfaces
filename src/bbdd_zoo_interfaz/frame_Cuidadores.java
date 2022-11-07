@@ -5,6 +5,7 @@
 package bbdd_Zoo_Interfaz;
 
 import Utilidades.TextPrompt;
+import static bbdd_Zoo_Interfaz.frame_Animal.deleteTransaccion;
 import static bbdd_Zoo_Interfaz.frame_Animal.updateAnimal;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -1201,6 +1202,7 @@ public class frame_Cuidadores extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonEditarEmpleadoActionPerformed
 
     private void jBBorrarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBorrarEmpleadoActionPerformed
+        
         int filaseleccionada = jTableEmpleados.getSelectedRow();
 
         if (filaseleccionada == -1) {
@@ -1213,7 +1215,8 @@ public class frame_Cuidadores extends javax.swing.JFrame {
 
             if (JOptionPane.OK_OPTION == confirmado) {
 
-                deleteEmpleado(dni);
+                String sql = "DELETE FROM caregivers WHERE dni = '"+dni+"'";
+                deleteTransaccion(sql);
                 vaciarCaregiversTable();
                 rellenarTablaCaregivers();
                 JOptionPane.showMessageDialog(null, "eliminado correctamente");

@@ -28,8 +28,10 @@ import javax.swing.table.DefaultTableModel;
  * @author Ismael
  */
 public class frame_Animal extends javax.swing.JFrame {
+
     private int x;
     private int y;
+
     /**
      * Creates new form frame_Animal
      */
@@ -39,7 +41,7 @@ public class frame_Animal extends javax.swing.JFrame {
         UI.put("nimbusBlueGrey", new ColorUIResource(103, 0, 4));
         jTableAnimales.getTableHeader().setForeground(Color.white);
         //jTableAnimales.setBackground(Color.getHSBColor(255, 255, 255));
-        
+
         listEspecie();
 //        String nombreSonido = "C:\\Users\\Ismael\\Documents\\NetBeansProjects\\BBDD_Zoo_Interfaz\\src\\Login\\Imagen\\jPark.wav";
 //        Login.LoginUser open = new LoginUser();
@@ -69,8 +71,6 @@ public class frame_Animal extends javax.swing.JFrame {
     //////////////////////////////////////////////////
     // MÉTODOS PARA ANIMALS
     //////////////////////////////////////////////////
-    
-    
     public void vaciarFrameAddAnimals() {
 
         jtNombreAltaAnimal.setText("");
@@ -130,8 +130,6 @@ public class frame_Animal extends javax.swing.JFrame {
             return false;
         }
     }
-    
-     
 
     public void vaciarTablaAnimales() {
 
@@ -144,8 +142,6 @@ public class frame_Animal extends javax.swing.JFrame {
         }
 
     }
-    
-    
 
     public void rellenarTablaAnimals() {
 
@@ -169,7 +165,7 @@ public class frame_Animal extends javax.swing.JFrame {
         }
 
     }
-    
+
     public void rellenarTablaAnimalsEspecies() {
         String especie2 = jCEspecies.getSelectedItem().toString();
         try {
@@ -203,35 +199,38 @@ public class frame_Animal extends javax.swing.JFrame {
         DBManagerZoo.insertAnimal(id, nombre, especie, peso);
 
     }
-    
-    public static boolean deleteAnimal(int id) {
-        try {
-            // Obtenemos el cliente
-            ResultSet rs = DBManagerZoo.getAnimal(id);
 
-            // Si no existe el Resultset
-            if (rs == null) {
-                System.out.println("ERROR. ResultSet null.");
-                return false;
-            }
-
-            // Si existe y tiene primer registro, lo eliminamos
-            if (rs.first()) {
-                rs.deleteRow();
-                rs.close();
-                return true;
-            } else {
-                JOptionPane.showMessageDialog(null, "ERROR AL BORRAR EL ANIMAL");
-                return false;
-            }
-
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            return false;
-        }
+    public static void deleteTransaccion(String sql) {
+        
+        
+        DBManagerZoo.transaccion(sql);
+        
+//        try {
+//            // Obtenemos el cliente
+//            ResultSet rs = DBManagerZoo.getAnimal(id);
+//
+//            // Si no existe el Resultset
+//            if (rs == null) {
+//                System.out.println("ERROR. ResultSet null.");
+//                return false;
+//            }
+//
+//            // Si existe y tiene primer registro, lo eliminamos
+//            if (rs.first()) {
+//                rs.deleteRow();
+//                rs.close();
+//                return true;
+//            } else {
+//                JOptionPane.showMessageDialog(null, "ERROR AL BORRAR EL ANIMAL");
+//                return false;
+//            }
+//
+//        } catch (SQLException ex) {
+//            ex.printStackTrace();
+//            return false;
+//        }
     }
 
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -979,6 +978,10 @@ public class frame_Animal extends javax.swing.JFrame {
     }//GEN-LAST:event_jbEditarAnimal
 
     private void jBBorrarAnimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBorrarAnimalActionPerformed
+
+        
+
+        /////////////////////////////////////////////////////////////////  
         int filaseleccionada = jTableAnimales.getSelectedRow();
 
         if (filaseleccionada == -1) {
@@ -989,8 +992,8 @@ public class frame_Animal extends javax.swing.JFrame {
             int confirmado = JOptionPane.showConfirmDialog(null, "¿Seguro que quieres eliminar a: " + nombre_animal + " ¡Y TODAS SUS TAREAS!?");
 
             if (JOptionPane.OK_OPTION == confirmado) {
-
-                deleteAnimal(id);
+                String sql = "DELETE FROM animals WHERE ID_ANIMAL = '"+id+"'";
+                deleteTransaccion(sql);
                 vaciarTablaAnimales();
                 rellenarTablaAnimals();
                 JOptionPane.showMessageDialog(null, "eliminado correctamente");
@@ -1045,100 +1048,100 @@ public class frame_Animal extends javax.swing.JFrame {
 
     private void jButtonAtrasAltaAnimalMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonAtrasAltaAnimalMouseEntered
         jButtonAtrasAltaAnimal.setCursor(new Cursor(HAND_CURSOR));
-        jButtonAtrasAltaAnimal.setBackground( new Color(217,165,9));
+        jButtonAtrasAltaAnimal.setBackground(new Color(217, 165, 9));
         jButtonAtrasAltaAnimal.setForeground(Color.BLACK);
     }//GEN-LAST:event_jButtonAtrasAltaAnimalMouseEntered
 
     private void jButtonAtrasAltaAnimalMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonAtrasAltaAnimalMouseExited
-        jButtonAtrasAltaAnimal.setBackground( new Color(103,0,3));
+        jButtonAtrasAltaAnimal.setBackground(new Color(103, 0, 3));
         jButtonAtrasAltaAnimal.setForeground(Color.WHITE);
     }//GEN-LAST:event_jButtonAtrasAltaAnimalMouseExited
 
     private void jbAltaAnimalMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbAltaAnimalMouseEntered
         jbAltaAnimal.setCursor(new Cursor(HAND_CURSOR));
-        jbAltaAnimal.setBackground( new Color(217,165,9));
+        jbAltaAnimal.setBackground(new Color(217, 165, 9));
         jbAltaAnimal.setForeground(Color.BLACK);
     }//GEN-LAST:event_jbAltaAnimalMouseEntered
 
     private void jbAltaAnimalMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbAltaAnimalMouseExited
-        jbAltaAnimal.setBackground( new Color(103,0,3));
+        jbAltaAnimal.setBackground(new Color(103, 0, 3));
         jbAltaAnimal.setForeground(Color.WHITE);
     }//GEN-LAST:event_jbAltaAnimalMouseExited
 
     private void jbListarAnimalesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbListarAnimalesMouseEntered
         jbListarAnimales.setCursor(new Cursor(HAND_CURSOR));
-        jbListarAnimales.setBackground( new Color(217,165,9));
+        jbListarAnimales.setBackground(new Color(217, 165, 9));
         jbListarAnimales.setForeground(Color.BLACK);
     }//GEN-LAST:event_jbListarAnimalesMouseEntered
 
     private void jbListarAnimalesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbListarAnimalesMouseExited
-        jbListarAnimales.setBackground( new Color(103,0,3));
+        jbListarAnimales.setBackground(new Color(103, 0, 3));
         jbListarAnimales.setForeground(Color.WHITE);
     }//GEN-LAST:event_jbListarAnimalesMouseExited
 
     private void jButtonAtrasListarAnimalesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonAtrasListarAnimalesMouseEntered
         jButtonAtrasListarAnimales.setCursor(new Cursor(HAND_CURSOR));
-        jButtonAtrasListarAnimales.setBackground( new Color(217,165,9));
+        jButtonAtrasListarAnimales.setBackground(new Color(217, 165, 9));
         jButtonAtrasListarAnimales.setForeground(Color.BLACK);
     }//GEN-LAST:event_jButtonAtrasListarAnimalesMouseEntered
 
     private void jButtonAtrasListarAnimalesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonAtrasListarAnimalesMouseExited
-        jButtonAtrasListarAnimales.setBackground( new Color(103,0,3));
+        jButtonAtrasListarAnimales.setBackground(new Color(103, 0, 3));
         jButtonAtrasListarAnimales.setForeground(Color.WHITE);
     }//GEN-LAST:event_jButtonAtrasListarAnimalesMouseExited
 
     private void jBModificarAnimalMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBModificarAnimalMouseEntered
         jBModificarAnimal.setCursor(new Cursor(HAND_CURSOR));
-        jBModificarAnimal.setBackground( new Color(217,165,9));
+        jBModificarAnimal.setBackground(new Color(217, 165, 9));
         jBModificarAnimal.setForeground(Color.BLACK);
     }//GEN-LAST:event_jBModificarAnimalMouseEntered
 
     private void jBModificarAnimalMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBModificarAnimalMouseExited
-        jBModificarAnimal.setBackground( new Color(103,0,3));
+        jBModificarAnimal.setBackground(new Color(103, 0, 3));
         jBModificarAnimal.setForeground(Color.WHITE);
     }//GEN-LAST:event_jBModificarAnimalMouseExited
 
     private void jBBorrarAnimalMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBBorrarAnimalMouseEntered
         jBBorrarAnimal.setCursor(new Cursor(HAND_CURSOR));
-        jBBorrarAnimal.setBackground( new Color(217,165,9));
+        jBBorrarAnimal.setBackground(new Color(217, 165, 9));
         jBBorrarAnimal.setForeground(Color.BLACK);
     }//GEN-LAST:event_jBBorrarAnimalMouseEntered
 
     private void jBBorrarAnimalMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBBorrarAnimalMouseExited
-        jBBorrarAnimal.setBackground( new Color(103,0,3));
+        jBBorrarAnimal.setBackground(new Color(103, 0, 3));
         jBBorrarAnimal.setForeground(Color.WHITE);
     }//GEN-LAST:event_jBBorrarAnimalMouseExited
 
     private void jButtonAtrasEditarAnimalMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonAtrasEditarAnimalMouseEntered
         jButtonAtrasEditarAnimal.setCursor(new Cursor(HAND_CURSOR));
-        jButtonAtrasEditarAnimal.setBackground( new Color(217,165,9));
+        jButtonAtrasEditarAnimal.setBackground(new Color(217, 165, 9));
         jButtonAtrasEditarAnimal.setForeground(Color.BLACK);
     }//GEN-LAST:event_jButtonAtrasEditarAnimalMouseEntered
 
     private void jButtonAtrasEditarAnimalMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonAtrasEditarAnimalMouseExited
-        jButtonAtrasEditarAnimal.setBackground( new Color(103,0,3));
+        jButtonAtrasEditarAnimal.setBackground(new Color(103, 0, 3));
         jButtonAtrasEditarAnimal.setForeground(Color.WHITE);
     }//GEN-LAST:event_jButtonAtrasEditarAnimalMouseExited
 
     private void jbEditarAnimalMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbEditarAnimalMouseEntered
         jbEditarAnimal.setCursor(new Cursor(HAND_CURSOR));
-        jbEditarAnimal.setBackground( new Color(217,165,9));
+        jbEditarAnimal.setBackground(new Color(217, 165, 9));
         jbEditarAnimal.setForeground(Color.BLACK);
     }//GEN-LAST:event_jbEditarAnimalMouseEntered
 
     private void jbEditarAnimalMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbEditarAnimalMouseExited
-        jbEditarAnimal.setBackground( new Color(103,0,3));
+        jbEditarAnimal.setBackground(new Color(103, 0, 3));
         jbEditarAnimal.setForeground(Color.WHITE);
     }//GEN-LAST:event_jbEditarAnimalMouseExited
 
     private void jButtonMostrarEspeciesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonMostrarEspeciesMouseEntered
-        jButtonMostrarEspecies.setBackground( new Color(217,165,9));
+        jButtonMostrarEspecies.setBackground(new Color(217, 165, 9));
         jButtonMostrarEspecies.setForeground(Color.BLACK);
         jButtonMostrarEspecies.setCursor(new Cursor(HAND_CURSOR));
     }//GEN-LAST:event_jButtonMostrarEspeciesMouseEntered
 
     private void jButtonMostrarEspeciesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonMostrarEspeciesMouseExited
-        jButtonMostrarEspecies.setBackground( new Color(103,0,3));
+        jButtonMostrarEspecies.setBackground(new Color(103, 0, 3));
         jButtonMostrarEspecies.setForeground(Color.WHITE);
     }//GEN-LAST:event_jButtonMostrarEspeciesMouseExited
 

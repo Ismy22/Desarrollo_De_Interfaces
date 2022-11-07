@@ -118,9 +118,9 @@ public class DBManagerZoo {
      */
     public static boolean loadDriver() {
         try {
-            System.out.print("Cargando Driver...");
+            //System.out.print("Cargando Driver...");
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-            System.out.println("OK!");
+            //System.out.println("OK!");
             return true;
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
@@ -157,7 +157,7 @@ public class DBManagerZoo {
         // Comprobamos estado de la conexión
         try {
             if (conn != null && conn.isValid(0)) {
-                System.out.println(DB_MSQ_CONN_OK);
+                //System.out.println(DB_MSQ_CONN_OK);
                 return true;
             } else {
                 return false;
@@ -176,7 +176,7 @@ public class DBManagerZoo {
         try {
             System.out.print("Cerrando la conexión...");
             conn.close();
-            System.out.println("OK!");
+            //System.out.println("OK!");
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -219,7 +219,39 @@ public class DBManagerZoo {
         return correcto;
     } //fin validarNifONie
 
+    public static void transaccion(String sql) {
+        try {
 
+            conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+
+            conn.setAutoCommit(false); ////// ----->> Desactivamos auto commit
+
+            Statement st = conn.createStatement();
+
+            // Crear un registro de envíos si se cumple una determinada condición
+            if (st.executeUpdate(sql) != 0) {
+                JOptionPane.showMessageDialog(null, "Transacción Correcta");
+                conn.commit();  ///// ---->> reflejar las operaciones en la base de datos
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Error, desacemos los cambios");
+                conn.rollback(); ///// -----> Deshacer operaciones
+            }
+        } catch (SQLException e) {  //Si se produce una Excepción deshacemos las operaciones
+
+            //System.out.println(e.toString());
+            if (conn != null) {
+                try {
+                    JOptionPane.showMessageDialog(null, "Error, desacemos los cambios");
+                    conn.rollback();///// -----> Deshacer operaciones
+                } catch (SQLException ex) {
+                    //System.out.println(ex.toString());
+                    JOptionPane.showMessageDialog(null, "Error, desacemos los cambios");
+                }
+            }
+
+        } 
+    }
 
     //////////////////////////////////////////////////
     // MÉTODOS DE TABLA ANIMALS
@@ -244,11 +276,11 @@ public class DBManagerZoo {
         }
 
     }
-    
+
     public static ResultSet getTablaAnimalsEspecies(int resultSetType, int resultSetConcurrency, String especie) {
         try {
             Statement stmt = conn.createStatement(resultSetType, resultSetConcurrency);
-            ResultSet rs = stmt.executeQuery("SELECT * FROM animals WHERE especie = '"+ especie + "'");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM animals WHERE especie = '" + especie + "'");
             //stmt.close();
             return rs;
         } catch (SQLException ex) {
@@ -431,13 +463,12 @@ public class DBManagerZoo {
     //////////////////////////////////////////////////
     // MÉTODOS DE TABLA CAREGIVERS
     //////////////////////////////////////////////////
-    
-    public static boolean completarTarea(int id){
-        
+    public static boolean completarTarea(int id) {
+
         try {
             // Obtenemos el cliente
             ResultSet rs = DBManagerZoo.getTablaTasksid(id);
-            
+
             // Si no existe el Resultset
             if (rs == null) {
                 System.out.println("Error. ResultSet null.");
@@ -447,7 +478,7 @@ public class DBManagerZoo {
             // Si tiene un primer registro, lo modificamos
             if (rs.first()) {
                 rs.updateBoolean("TAREA_COMPLETADA", true);
-                
+
                 rs.updateRow();
                 rs.close();
                 JOptionPane.showMessageDialog(null, "Tarea Marcada como Realizada correctamente", "Tarea realizada", JOptionPane.INFORMATION_MESSAGE);
@@ -460,9 +491,9 @@ public class DBManagerZoo {
             ex.printStackTrace();
             return false;
         }
-    
+
     }
-    
+
     //recupera toda la tabla de la bd caregivers
     public static ResultSet getTablaCaregivers(int resultSetType, int resultSetConcurrency) {
         try {
@@ -811,8 +842,6 @@ public class DBManagerZoo {
         }
     }
 
-    
-
     //////////////////////////////////////////////////
     // MÉTODOS DE TABLA TASKS
     //////////////////////////////////////////////////
@@ -877,7 +906,7 @@ public class DBManagerZoo {
         }
 
     }
-    
+
     public static boolean comprobarTareaRealizada(int id) {
         try {
             // Realizamos la consulta SQL

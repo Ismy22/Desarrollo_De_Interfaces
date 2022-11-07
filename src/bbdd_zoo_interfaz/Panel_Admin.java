@@ -375,14 +375,14 @@ public class Panel_Admin extends javax.swing.JFrame {
 
         capa_Titulo5.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Editar  Tarea");
         jLabel7.setFont(new java.awt.Font("Jurassic Park", 1, 48)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Editar  Tarea");
         jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jButtonAtrasEditarTarea.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Login/Imagen/hacia-atras (1).png"))); // NOI18N
         jButtonAtrasEditarTarea.setBackground(new java.awt.Color(103, 0, 3));
+        jButtonAtrasEditarTarea.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Login/Imagen/hacia-atras (1).png"))); // NOI18N
         jButtonAtrasEditarTarea.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButtonAtrasEditarTareaMouseEntered(evt);
@@ -417,24 +417,24 @@ public class Panel_Admin extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabel8.setText("Tarea");
         jLabel8.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setText("Tarea");
 
-        jLabel9.setText("Plus peligro");
         jLabel9.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel9.setText("Plus peligro");
 
-        jLabel10.setText("Cuidador");
         jLabel10.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel10.setText("Cuidador");
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jbModificarAnimal.setText("Modificar");
         jbModificarAnimal.setBackground(new java.awt.Color(113, 0, 3));
         jbModificarAnimal.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jbModificarAnimal.setForeground(new java.awt.Color(255, 255, 255));
+        jbModificarAnimal.setText("Modificar");
         jbModificarAnimal.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jbModificarAnimalMouseEntered(evt);
@@ -467,31 +467,31 @@ public class Panel_Admin extends javax.swing.JFrame {
         );
 
         jcEditarTarea.setBackground(new java.awt.Color(255, 255, 255));
-        jcEditarTarea.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         jcEditarTarea.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jcEditarTarea.setForeground(new java.awt.Color(0, 0, 0));
+        jcEditarTarea.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
         jcEditarCuidador.setBackground(new java.awt.Color(255, 255, 255));
-        jcEditarCuidador.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         jcEditarCuidador.setForeground(new java.awt.Color(0, 0, 0));
+        jcEditarCuidador.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
-        jLabel11.setText("Animal");
         jLabel11.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel11.setText("Animal");
 
         jcEditarAnimal.setBackground(new java.awt.Color(255, 255, 255));
-        jcEditarAnimal.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         jcEditarAnimal.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jcEditarAnimal.setForeground(new java.awt.Color(0, 0, 0));
+        jcEditarAnimal.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         jcEditarAnimal.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jcEditarAnimalItemStateChanged(evt);
             }
         });
 
-        jLabel12.setText("Fecha y Hora");
         jLabel12.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel12.setText("Fecha y Hora");
 
         jtEditarPlusPeligroAltaTarea.setEditable(false);
 
@@ -579,16 +579,16 @@ public class Panel_Admin extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel3.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setText("Panel del Panico   *");
         jLabel13.setBackground(new java.awt.Color(255, 255, 255));
         jLabel13.setFont(new java.awt.Font("Jurassic Park", 1, 48)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel13.setText("Panel del Panico   *");
 
-        jButtonBorrarAnimales.setText("Borrar Animales");
         jButtonBorrarAnimales.setBackground(new java.awt.Color(103, 0, 3));
         jButtonBorrarAnimales.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         jButtonBorrarAnimales.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonBorrarAnimales.setText("Borrar Animales");
         jButtonBorrarAnimales.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButtonBorrarAnimalesMouseEntered(evt);
@@ -603,10 +603,10 @@ public class Panel_Admin extends javax.swing.JFrame {
             }
         });
 
-        jbuttonBorrarEmpleados.setText("Borrar Empleados");
         jbuttonBorrarEmpleados.setBackground(new java.awt.Color(103, 0, 3));
         jbuttonBorrarEmpleados.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         jbuttonBorrarEmpleados.setForeground(new java.awt.Color(255, 255, 255));
+        jbuttonBorrarEmpleados.setText("Borrar Empleados");
         jbuttonBorrarEmpleados.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jbuttonBorrarEmpleadosMouseEntered(evt);
@@ -621,10 +621,10 @@ public class Panel_Admin extends javax.swing.JFrame {
             }
         });
 
-        jButtonBorrarTareas.setText("Borrar Tareas");
         jButtonBorrarTareas.setBackground(new java.awt.Color(103, 0, 3));
         jButtonBorrarTareas.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         jButtonBorrarTareas.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonBorrarTareas.setText("Borrar Tareas");
         jButtonBorrarTareas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButtonBorrarTareasMouseEntered(evt);
@@ -639,10 +639,10 @@ public class Panel_Admin extends javax.swing.JFrame {
             }
         });
 
-        jButtonEmpezarCero.setText("A la mierda TODO");
         jButtonEmpezarCero.setBackground(new java.awt.Color(103, 0, 3));
         jButtonEmpezarCero.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
         jButtonEmpezarCero.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonEmpezarCero.setText("A la mierda TODO");
         jButtonEmpezarCero.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButtonEmpezarCeroMouseEntered(evt);
@@ -657,10 +657,10 @@ public class Panel_Admin extends javax.swing.JFrame {
             }
         });
 
-        jbuttonBorrarUnaTarea.setText("Borrar una tarea");
         jbuttonBorrarUnaTarea.setBackground(new java.awt.Color(103, 0, 3));
         jbuttonBorrarUnaTarea.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         jbuttonBorrarUnaTarea.setForeground(new java.awt.Color(255, 255, 255));
+        jbuttonBorrarUnaTarea.setText("Borrar una tarea");
         jbuttonBorrarUnaTarea.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jbuttonBorrarUnaTareaMouseEntered(evt);
@@ -675,10 +675,10 @@ public class Panel_Admin extends javax.swing.JFrame {
             }
         });
 
-        jbuttonBorrarEspecies.setText("Borrar Especies");
         jbuttonBorrarEspecies.setBackground(new java.awt.Color(103, 0, 3));
         jbuttonBorrarEspecies.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         jbuttonBorrarEspecies.setForeground(new java.awt.Color(255, 255, 255));
+        jbuttonBorrarEspecies.setText("Borrar Especies");
         jbuttonBorrarEspecies.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jbuttonBorrarEspeciesMouseEntered(evt);
@@ -693,10 +693,10 @@ public class Panel_Admin extends javax.swing.JFrame {
             }
         });
 
-        jbuttonBorrarTrabajos.setText("Borrar Trabajos");
         jbuttonBorrarTrabajos.setBackground(new java.awt.Color(103, 0, 3));
         jbuttonBorrarTrabajos.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         jbuttonBorrarTrabajos.setForeground(new java.awt.Color(255, 255, 255));
+        jbuttonBorrarTrabajos.setText("Borrar Trabajos");
         jbuttonBorrarTrabajos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jbuttonBorrarTrabajosMouseEntered(evt);
@@ -711,8 +711,8 @@ public class Panel_Admin extends javax.swing.JFrame {
             }
         });
 
-        jButtonAtrasPanico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Login/Imagen/hacia-atras (1).png"))); // NOI18N
         jButtonAtrasPanico.setBackground(new java.awt.Color(103, 0, 3));
+        jButtonAtrasPanico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Login/Imagen/hacia-atras (1).png"))); // NOI18N
         jButtonAtrasPanico.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButtonAtrasPanicoMouseEntered(evt);
@@ -832,20 +832,20 @@ public class Panel_Admin extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("22Historico tareas 22");
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Jurassic Park", 1, 70)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("22Historico tareas 22");
 
         datePickerHistorico.setBackground(new java.awt.Color(255, 255, 255));
         datePickerHistorico.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         datePickerHistorico.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
 
-        jButtonMostrarFecha.setText("Mostrar");
         jButtonMostrarFecha.setBackground(new java.awt.Color(103, 0, 3));
         jButtonMostrarFecha.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         jButtonMostrarFecha.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonMostrarFecha.setText("Mostrar");
         jButtonMostrarFecha.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButtonMostrarFechaMouseEntered(evt);
@@ -893,8 +893,8 @@ public class Panel_Admin extends javax.swing.JFrame {
             jTablehistorico.getColumnModel().getColumn(3).setResizable(false);
         }
 
-        jButtonAtrasHistorico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Login/Imagen/hacia-atras (1).png"))); // NOI18N
         jButtonAtrasHistorico.setBackground(new java.awt.Color(103, 0, 3));
+        jButtonAtrasHistorico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Login/Imagen/hacia-atras (1).png"))); // NOI18N
         jButtonAtrasHistorico.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButtonAtrasHistoricoMouseEntered(evt);
@@ -981,11 +981,11 @@ public class Panel_Admin extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Jurassic  Zoo @");
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Jurassic Park", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Jurassic  Zoo @");
 
         jTablePrincipal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1010,6 +1010,11 @@ public class Panel_Admin extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTablePrincipal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTablePrincipalMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTablePrincipal);
         if (jTablePrincipal.getColumnModel().getColumnCount() > 0) {
             jTablePrincipal.getColumnModel().getColumn(1).setResizable(false);
@@ -1020,10 +1025,10 @@ public class Panel_Admin extends javax.swing.JFrame {
             jTablePrincipal.getColumnModel().getColumn(6).setResizable(false);
         }
 
-        jButtonAnimal.setText("Animales");
         jButtonAnimal.setBackground(new java.awt.Color(103, 0, 3));
         jButtonAnimal.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jButtonAnimal.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonAnimal.setText("Animales");
         jButtonAnimal.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButtonAnimalMouseEntered(evt);
@@ -1038,10 +1043,10 @@ public class Panel_Admin extends javax.swing.JFrame {
             }
         });
 
-        jButtonEmpleados.setText("Empleados");
         jButtonEmpleados.setBackground(new java.awt.Color(103, 0, 3));
         jButtonEmpleados.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jButtonEmpleados.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonEmpleados.setText("Empleados");
         jButtonEmpleados.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButtonEmpleadosMouseEntered(evt);
@@ -1056,10 +1061,10 @@ public class Panel_Admin extends javax.swing.JFrame {
             }
         });
 
-        jButtonTareas.setText("Tareas");
         jButtonTareas.setBackground(new java.awt.Color(103, 0, 3));
         jButtonTareas.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jButtonTareas.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonTareas.setText("Tareas");
         jButtonTareas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButtonTareasMouseEntered(evt);
@@ -1074,10 +1079,10 @@ public class Panel_Admin extends javax.swing.JFrame {
             }
         });
 
-        jButtonEspecies.setText("Especies");
         jButtonEspecies.setBackground(new java.awt.Color(103, 0, 3));
         jButtonEspecies.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jButtonEspecies.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonEspecies.setText("Especies");
         jButtonEspecies.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButtonEspeciesMouseEntered(evt);
@@ -1092,10 +1097,10 @@ public class Panel_Admin extends javax.swing.JFrame {
             }
         });
 
-        jButtonEspecialidad.setText("Especialidad");
         jButtonEspecialidad.setBackground(new java.awt.Color(103, 0, 3));
         jButtonEspecialidad.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jButtonEspecialidad.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonEspecialidad.setText("Especialidad");
         jButtonEspecialidad.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButtonEspecialidadMouseEntered(evt);
@@ -1110,10 +1115,10 @@ public class Panel_Admin extends javax.swing.JFrame {
             }
         });
 
-        jButtonTrabajos.setText("Trabajos");
         jButtonTrabajos.setBackground(new java.awt.Color(103, 0, 3));
         jButtonTrabajos.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jButtonTrabajos.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonTrabajos.setText("Trabajos");
         jButtonTrabajos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButtonTrabajosMouseEntered(evt);
@@ -1128,28 +1133,20 @@ public class Panel_Admin extends javax.swing.JFrame {
             }
         });
 
-        jButtonModificarTarea.setText("Modificar Tarea");
         jButtonModificarTarea.setBackground(new java.awt.Color(103, 0, 3));
         jButtonModificarTarea.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jButtonModificarTarea.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonModificarTarea.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButtonModificarTareaMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButtonModificarTareaMouseExited(evt);
-            }
-        });
+        jButtonModificarTarea.setText("Modificar Tarea");
         jButtonModificarTarea.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonModificarTareaActionPerformed(evt);
             }
         });
 
-        jButtonCerrarSesion.setText("Cerrar Sesión");
         jButtonCerrarSesion.setBackground(new java.awt.Color(103, 0, 3));
         jButtonCerrarSesion.setFont(new java.awt.Font("Roboto", 1, 10)); // NOI18N
         jButtonCerrarSesion.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonCerrarSesion.setText("Cerrar Sesión");
         jButtonCerrarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButtonCerrarSesionMouseEntered(evt);
@@ -1164,10 +1161,10 @@ public class Panel_Admin extends javax.swing.JFrame {
             }
         });
 
-        jButtonSalir.setText("Salir");
         jButtonSalir.setBackground(new java.awt.Color(103, 0, 3));
         jButtonSalir.setFont(new java.awt.Font("Roboto", 1, 10)); // NOI18N
         jButtonSalir.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonSalir.setText("Salir");
         jButtonSalir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButtonSalirMouseEntered(evt);
@@ -1182,14 +1179,14 @@ public class Panel_Admin extends javax.swing.JFrame {
             }
         });
 
-        jLabelSesionUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelSesionUser.setText("f");
         jLabelSesionUser.setBackground(new java.awt.Color(255, 255, 255));
         jLabelSesionUser.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         jLabelSesionUser.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelSesionUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelSesionUser.setText("f");
 
-        jButtonSuperAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Login/Imagen/Settings_30027.png"))); // NOI18N
         jButtonSuperAdmin.setBackground(new java.awt.Color(103, 0, 3));
+        jButtonSuperAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Login/Imagen/Settings_30027.png"))); // NOI18N
         jButtonSuperAdmin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButtonSuperAdminMouseEntered(evt);
@@ -1204,10 +1201,10 @@ public class Panel_Admin extends javax.swing.JFrame {
             }
         });
 
-        jButtonHistoricoTareas.setText("Histórico Tareas");
         jButtonHistoricoTareas.setBackground(new java.awt.Color(103, 0, 3));
         jButtonHistoricoTareas.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jButtonHistoricoTareas.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonHistoricoTareas.setText("Histórico Tareas");
         jButtonHistoricoTareas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButtonHistoricoTareasMouseEntered(evt);
@@ -1225,18 +1222,10 @@ public class Panel_Admin extends javax.swing.JFrame {
             }
         });
 
-        jButtonCompletarTarea.setText("Completar Tarea");
         jButtonCompletarTarea.setBackground(new java.awt.Color(103, 0, 3));
         jButtonCompletarTarea.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jButtonCompletarTarea.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonCompletarTarea.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButtonCompletarTareaMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButtonCompletarTareaMouseExited(evt);
-            }
-        });
+        jButtonCompletarTarea.setText("Completar Tarea");
         jButtonCompletarTarea.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCompletarTareaActionPerformed(evt);
@@ -1374,20 +1363,27 @@ public class Panel_Admin extends javax.swing.JFrame {
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         vaciarTablaPrincipal();
         rellenarTablaPrincipal();
+        int fila = jTablePrincipal.getSelectedRow();
+        if (fila < 0) {
+            jButtonModificarTarea.setBackground(new Color(103, 0, 3));
+            jButtonModificarTarea.setForeground(Color.WHITE);
+            jButtonCompletarTarea.setBackground(new Color(103, 0, 3));
+            jButtonCompletarTarea.setForeground(Color.WHITE);
+        }
     }//GEN-LAST:event_formWindowGainedFocus
 
     private void jButtonModificarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarTareaActionPerformed
 
-         //Guardamos en un entero la fila seleccionada.
+        //Guardamos en un entero la fila seleccionada.
         int filaseleccionada = jTablePrincipal.getSelectedRow();
 
         if (filaseleccionada == -1) {
             JOptionPane.showMessageDialog(null, "No ha seleccionado ninguna fila.");
         } else {
-            
+
             jFrameHistoricoTareas.setVisible(true);
             jFrameHistoricoTareas.isFocusableWindow();
-            
+
             listAnimals();
             //String ayuda = tabla.getValueAt(filaseleccionada, num_columna).toString());
             String animal = (String) jTablePrincipal.getValueAt(filaseleccionada, 0);
@@ -1650,7 +1646,7 @@ public class Panel_Admin extends javax.swing.JFrame {
     private void jFrameSuperAdminMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFrameSuperAdminMouseDragged
         Point point = MouseInfo.getPointerInfo().getLocation();
         setLocation(point.x - x, point.y - y);
-        
+
     }//GEN-LAST:event_jFrameSuperAdminMouseDragged
 
     private void jFrameHistoricoTareasMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFrameHistoricoTareasMouseDragged
@@ -1704,12 +1700,6 @@ public class Panel_Admin extends javax.swing.JFrame {
         jButtonTrabajos.setCursor(new Cursor(HAND_CURSOR));
     }//GEN-LAST:event_jButtonTrabajosMouseEntered
 
-    private void jButtonModificarTareaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonModificarTareaMouseEntered
-        jButtonModificarTarea.setBackground(new Color(217, 165, 9));
-        jButtonModificarTarea.setForeground(Color.BLACK);
-        jButtonModificarTarea.setCursor(new Cursor(HAND_CURSOR));
-    }//GEN-LAST:event_jButtonModificarTareaMouseEntered
-
     private void jButtonHistoricoTareasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonHistoricoTareasMouseEntered
         jButtonHistoricoTareas.setBackground(new Color(217, 165, 9));
         jButtonHistoricoTareas.setForeground(Color.BLACK);
@@ -1757,11 +1747,6 @@ public class Panel_Admin extends javax.swing.JFrame {
         jButtonTrabajos.setBackground(new Color(103, 0, 3));
         jButtonTrabajos.setForeground(Color.WHITE);
     }//GEN-LAST:event_jButtonTrabajosMouseExited
-
-    private void jButtonModificarTareaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonModificarTareaMouseExited
-        jButtonModificarTarea.setBackground(new Color(103, 0, 3));
-        jButtonModificarTarea.setForeground(Color.WHITE);
-    }//GEN-LAST:event_jButtonModificarTareaMouseExited
 
     private void jButtonHistoricoTareasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonHistoricoTareasMouseExited
         jButtonHistoricoTareas.setBackground(new Color(103, 0, 3));
@@ -1926,17 +1911,6 @@ public class Panel_Admin extends javax.swing.JFrame {
         jButtonSuperAdmin.setForeground(Color.WHITE);
     }//GEN-LAST:event_jButtonSuperAdminMouseExited
 
-    private void jButtonCompletarTareaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCompletarTareaMouseEntered
-        jButtonCompletarTarea.setCursor(new Cursor(HAND_CURSOR));
-        jButtonCompletarTarea.setBackground(new Color(217, 165, 9));
-        jButtonCompletarTarea.setForeground(Color.BLACK);
-    }//GEN-LAST:event_jButtonCompletarTareaMouseEntered
-
-    private void jButtonCompletarTareaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCompletarTareaMouseExited
-        jButtonCompletarTarea.setBackground(new Color(103, 0, 3));
-        jButtonCompletarTarea.setForeground(Color.WHITE);
-    }//GEN-LAST:event_jButtonCompletarTareaMouseExited
-
     private void jButtonCompletarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCompletarTareaActionPerformed
 
         try {
@@ -1981,6 +1955,20 @@ public class Panel_Admin extends javax.swing.JFrame {
         Point point = MouseInfo.getPointerInfo().getLocation();
         setLocation(point.x - x, point.y - y);
     }//GEN-LAST:event_jPanel4MouseDragged
+
+    private void jTablePrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePrincipalMouseClicked
+        int fila_seleccionada = jTablePrincipal.getSelectedRow();
+        if (fila_seleccionada > -1) {
+            //JOptionPane.showMessageDialog(null, "no");
+            jButtonCompletarTarea.setCursor(new Cursor(HAND_CURSOR));
+            jButtonCompletarTarea.setBackground(new Color(217, 165, 9));
+            jButtonCompletarTarea.setForeground(Color.BLACK);
+
+            jButtonModificarTarea.setCursor(new Cursor(HAND_CURSOR));
+            jButtonModificarTarea.setBackground(new Color(217, 165, 9));
+            jButtonModificarTarea.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_jTablePrincipalMouseClicked
 
     /**
      * @param args the command line arguments
