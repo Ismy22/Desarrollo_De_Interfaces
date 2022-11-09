@@ -881,10 +881,23 @@ public class DBManagerZoo {
 
     }
 
-    public static ResultSet getTablaTasksFecha(int resultSetType, int resultSetConcurrency, String fecha , String dni) {
+    public static ResultSet getTablaTasksFecha(int resultSetType, int resultSetConcurrency, String fecha) {
         try {
             Statement stmt = conn.createStatement(resultSetType, resultSetConcurrency);
-            ResultSet rs = stmt.executeQuery("SELECT * FROM tasks WHERE FECHA_TAREA LIKE '" + fecha + "%' AND CUIDADOR = '"+dni+"' AND TAREA_REALIZADA = '0'");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM tasks WHERE TAREA_REALIZADA = '0' AND FECHA_TAREA LIKE '" + fecha + "%'");
+            //stmt.close();
+            return rs;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+
+    }
+    
+    public static ResultSet getTablaTasksFecha2(int resultSetType, int resultSetConcurrency, String fecha, String dni) {
+        try {
+            Statement stmt = conn.createStatement(resultSetType, resultSetConcurrency);
+            ResultSet rs = stmt.executeQuery("SELECT * FROM tasks WHERE FECHA_TAREA LIKE '" + fecha + "%' AND CUIDADOR = '"+dni+"' AND TAREA_REALIZADA = 0");
             //stmt.close();
             return rs;
         } catch (SQLException ex) {

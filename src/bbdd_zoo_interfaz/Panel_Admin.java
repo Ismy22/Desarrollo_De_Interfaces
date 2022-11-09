@@ -187,9 +187,11 @@ public class Panel_Admin extends javax.swing.JFrame {
                 String tarea = rs.getString(DB_TASKS_TAREA);
                 String fecha = rs.getString(DB_TASKS_FECHA);
                 Boolean realizada = rs.getBoolean(DB_TASKS_REALIZADO);
+                Boolean completada = rs.getBoolean("Tarea_completada");
+                
 
                 DefaultTableModel model = (DefaultTableModel) jTablehistorico.getModel();
-                Object[] row = {animalName, cuidadorName, tarea, fecha, realizada};
+                Object[] row = {animalName, cuidadorName, tarea, fecha, realizada, completada};
                 model.addRow(row);
             }
             rs.close();
@@ -200,10 +202,9 @@ public class Panel_Admin extends javax.swing.JFrame {
 
     }
 
-    public void rellenarTablaHistoricoFecha(String dni) {
-        String fecha = datePickerHistorico.getDate().toString();
+    public void rellenarTablaHistoricoFecha(String fecha) {
         try {
-            ResultSet rs = DBManagerZoo.getTablaTasksFecha(DEFAULT_CURSOR, DISPOSE_ON_CLOSE, fecha, dni);
+            ResultSet rs = DBManagerZoo.getTablaTasksFecha(DEFAULT_CURSOR, DISPOSE_ON_CLOSE, fecha);
             while (rs.next()) {
                 int animalId = rs.getInt(DB_TASKS_ANIMAL);
                 String animalName = DBManagerZoo.getAnimalName(animalId);
@@ -212,9 +213,11 @@ public class Panel_Admin extends javax.swing.JFrame {
                 String tarea = rs.getString(DB_TASKS_TAREA);
                 String fecha1 = rs.getString(DB_TASKS_FECHA);
                 Boolean realizada = rs.getBoolean(DB_TASKS_REALIZADO);
+                Boolean completada = rs.getBoolean("tarea_completada");
+                
 
                 DefaultTableModel model = (DefaultTableModel) jTablehistorico.getModel();
-                Object[] row = {animalName, cuidadorName, tarea, fecha1, realizada};
+                Object[] row = {animalName, cuidadorName, tarea, fecha1, realizada, completada};
                 model.addRow(row);
             }
             rs.close();
@@ -331,7 +334,7 @@ public class Panel_Admin extends javax.swing.JFrame {
         jFrameHistoricoTareas = new javax.swing.JFrame();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        datePickerHistorico = new com.github.lgooddatepicker.components.DatePicker();
+        datePickerHistoricoTareas = new com.github.lgooddatepicker.components.DatePicker();
         jButtonMostrarFecha = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTablehistorico = new javax.swing.JTable();
@@ -838,9 +841,9 @@ public class Panel_Admin extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Jurassic Park", 1, 70)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
 
-        datePickerHistorico.setBackground(new java.awt.Color(255, 255, 255));
-        datePickerHistorico.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-        datePickerHistorico.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        datePickerHistoricoTareas.setBackground(new java.awt.Color(255, 255, 255));
+        datePickerHistoricoTareas.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        datePickerHistoricoTareas.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
 
         jButtonMostrarFecha.setText("Mostrar");
         jButtonMostrarFecha.setBackground(new java.awt.Color(103, 0, 3));
@@ -860,21 +863,19 @@ public class Panel_Admin extends javax.swing.JFrame {
             }
         });
 
-        jTablehistorico.setBackground(new java.awt.Color(255, 255, 255));
-        jTablehistorico.setForeground(new java.awt.Color(0, 0, 0));
         jTablehistorico.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Animal", "Cuidador", "Tarea", "Fecha", "Realizada"
+                "Animal", "Cuidador", "Tarea", "Fecha", "Realizada", "Completadas"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -885,13 +886,56 @@ public class Panel_Admin extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTablehistorico.setBackground(new java.awt.Color(255, 255, 255));
+        jTablehistorico.setForeground(new java.awt.Color(0, 0, 0));
         jScrollPane3.setViewportView(jTablehistorico);
         if (jTablehistorico.getColumnModel().getColumnCount() > 0) {
             jTablehistorico.getColumnModel().getColumn(0).setResizable(false);
             jTablehistorico.getColumnModel().getColumn(1).setResizable(false);
             jTablehistorico.getColumnModel().getColumn(2).setResizable(false);
             jTablehistorico.getColumnModel().getColumn(3).setResizable(false);
+            jTablehistorico.getColumnModel().getColumn(4).setResizable(false);
+            jTablehistorico.getColumnModel().getColumn(5).setResizable(false);
         }
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonMostrarFecha)
+                .addGap(18, 18, 18)
+                .addComponent(datePickerHistoricoTareas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 754, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(datePickerHistoricoTareas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonMostrarFecha))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jPanel4Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {datePickerHistoricoTareas, jButtonMostrarFecha});
+
+        javax.swing.GroupLayout jFrameHistoricoTareasLayout = new javax.swing.GroupLayout(jFrameHistoricoTareas.getContentPane());
+        jFrameHistoricoTareas.getContentPane().setLayout(jFrameHistoricoTareasLayout);
+        jFrameHistoricoTareasLayout.setHorizontalGroup(
+            jFrameHistoricoTareasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jFrameHistoricoTareasLayout.setVerticalGroup(
+            jFrameHistoricoTareasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         jButtonAtrasHistorico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Login/Imagen/hacia-atras (1).png"))); // NOI18N
         jButtonAtrasHistorico.setBackground(new java.awt.Color(103, 0, 3));
@@ -911,51 +955,6 @@ public class Panel_Admin extends javax.swing.JFrame {
                 jButtonAtrasHistoricoActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonMostrarFecha)
-                .addGap(18, 18, 18)
-                .addComponent(datePickerHistorico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 754, Short.MAX_VALUE)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButtonAtrasHistorico)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButtonAtrasHistorico)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(datePickerHistorico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonMostrarFecha))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        jPanel4Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {datePickerHistorico, jButtonMostrarFecha});
-
-        javax.swing.GroupLayout jFrameHistoricoTareasLayout = new javax.swing.GroupLayout(jFrameHistoricoTareas.getContentPane());
-        jFrameHistoricoTareas.getContentPane().setLayout(jFrameHistoricoTareasLayout);
-        jFrameHistoricoTareasLayout.setHorizontalGroup(
-            jFrameHistoricoTareasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jFrameHistoricoTareasLayout.setVerticalGroup(
-            jFrameHistoricoTareasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -1609,12 +1608,11 @@ public class Panel_Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonHistoricoTareasActionPerformed
 
     private void jButtonMostrarFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarFechaActionPerformed
-        
-        String dni =jLabelSesionUser.getText();
+        String fecha =datePickerHistoricoTareas.getDate().toString(); 
         try {
 
             vaciarTablaHistorico();
-            rellenarTablaHistoricoFecha(dni);
+            rellenarTablaHistoricoFecha(fecha);
 
         } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(null, "No puede dejar el campo fecha vacío");
@@ -2011,7 +2009,7 @@ public class Panel_Admin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel capa5;
     private javax.swing.JPanel capa_Titulo5;
-    private com.github.lgooddatepicker.components.DatePicker datePickerHistorico;
+    private com.github.lgooddatepicker.components.DatePicker datePickerHistoricoTareas;
     private com.github.lgooddatepicker.components.DateTimePicker dateTimePickerEditar;
     private javax.swing.JButton jButtonAnimal;
     private javax.swing.JButton jButtonAtrasEditarTarea;

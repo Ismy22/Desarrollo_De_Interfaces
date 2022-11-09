@@ -200,36 +200,36 @@ public class frame_Animal extends javax.swing.JFrame {
 
     }
 
-    public static void deleteTransaccion(String sql) {
-        
-        
-        DBManagerZoo.transaccion(sql);
-        
-//        try {
-//            // Obtenemos el cliente
-//            ResultSet rs = DBManagerZoo.getAnimal(id);
-//
-//            // Si no existe el Resultset
-//            if (rs == null) {
-//                System.out.println("ERROR. ResultSet null.");
-//                return false;
-//            }
-//
-//            // Si existe y tiene primer registro, lo eliminamos
-//            if (rs.first()) {
-//                rs.deleteRow();
-//                rs.close();
-//                return true;
-//            } else {
-//                JOptionPane.showMessageDialog(null, "ERROR AL BORRAR EL ANIMAL");
-//                return false;
-//            }
-//
-//        } catch (SQLException ex) {
-//            ex.printStackTrace();
-//            return false;
-//        }
-    }
+//    public static void deleteTransaccion(String sql) {
+//        
+//        
+//        DBManagerZoo.transaccion(sql);
+//        
+////        try {
+////            // Obtenemos el cliente
+////            ResultSet rs = DBManagerZoo.getAnimal(id);
+////
+////            // Si no existe el Resultset
+////            if (rs == null) {
+////                System.out.println("ERROR. ResultSet null.");
+////                return false;
+////            }
+////
+////            // Si existe y tiene primer registro, lo eliminamos
+////            if (rs.first()) {
+////                rs.deleteRow();
+////                rs.close();
+////                return true;
+////            } else {
+////                JOptionPane.showMessageDialog(null, "ERROR AL BORRAR EL ANIMAL");
+////                return false;
+////            }
+////
+////        } catch (SQLException ex) {
+////            ex.printStackTrace();
+////            return false;
+////        }
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -993,7 +993,8 @@ public class frame_Animal extends javax.swing.JFrame {
 
             if (JOptionPane.OK_OPTION == confirmado) {
                 String sql = "DELETE FROM animals WHERE ID_ANIMAL = '"+id+"'";
-                deleteTransaccion(sql);
+                DBManagerZoo.transaccion(sql);
+                //deleteTransaccion(sql);
                 vaciarTablaAnimales();
                 rellenarTablaAnimals();
                 JOptionPane.showMessageDialog(null, "eliminado correctamente");

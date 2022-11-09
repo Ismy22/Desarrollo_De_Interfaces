@@ -5,7 +5,6 @@
 package bbdd_Zoo_Interfaz;
 
 import Utilidades.TextPrompt;
-import static bbdd_Zoo_Interfaz.frame_Animal.deleteTransaccion;
 import static bbdd_Zoo_Interfaz.frame_Animal.updateAnimal;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -1216,7 +1215,7 @@ public class frame_Cuidadores extends javax.swing.JFrame {
             if (JOptionPane.OK_OPTION == confirmado) {
 
                 String sql = "DELETE FROM caregivers WHERE dni = '"+dni+"'";
-                deleteTransaccion(sql);
+                DBManagerZoo.transaccion(sql);
                 vaciarCaregiversTable();
                 rellenarTablaCaregivers();
                 JOptionPane.showMessageDialog(null, "eliminado correctamente");

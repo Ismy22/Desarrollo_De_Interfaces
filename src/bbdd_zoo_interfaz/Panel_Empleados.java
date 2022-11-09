@@ -143,7 +143,7 @@ public class Panel_Empleados extends javax.swing.JFrame {
         String dni = jlabelSesiondni.getText();
         String fecha = datePickerHistorico.getDate().toString();
         try {
-            ResultSet rs = DBManagerZoo.getTablaTasksFecha(DEFAULT_CURSOR, DISPOSE_ON_CLOSE, fecha, dni);
+            ResultSet rs = DBManagerZoo.getTablaTasksFecha2(DEFAULT_CURSOR, DISPOSE_ON_CLOSE, fecha, dni);
             while (rs.next()) {
                 int idtarea = rs.getInt(DB_TASKS_ID_TAREA);
                 int animalId = rs.getInt(DB_TASKS_ANIMAL);
