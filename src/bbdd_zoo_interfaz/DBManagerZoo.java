@@ -881,10 +881,23 @@ public class DBManagerZoo {
 
     }
 
-    public static ResultSet getTablaTasksFecha(int resultSetType, int resultSetConcurrency, String fecha) {
+    public static ResultSet getTablaTasksFecha(int resultSetType, int resultSetConcurrency, String fecha , String dni) {
         try {
             Statement stmt = conn.createStatement(resultSetType, resultSetConcurrency);
-            ResultSet rs = stmt.executeQuery("SELECT * FROM tasks WHERE FECHA_TAREA LIKE '" + fecha + "%'");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM tasks WHERE FECHA_TAREA LIKE '" + fecha + "%' AND CUIDADOR = '"+dni+"' AND TAREA_REALIZADA = '0'");
+            //stmt.close();
+            return rs;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+
+    }
+    
+    public static ResultSet getTablaTasksNoRealizada(String dni) {
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM tasks WHERE tarea_realizada = '0' AND CUIDADOR = '"+dni+"'");
             //stmt.close();
             return rs;
         } catch (SQLException ex) {
@@ -898,6 +911,19 @@ public class DBManagerZoo {
         try {
             Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
             ResultSet rs = stmt.executeQuery("SELECT * FROM tasks WHERE cuidador = '" + dni + "'");
+            //stmt.close();
+            return rs;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+
+    }
+    
+    public static ResultSet getTablaTasksFechaDni(String dni, String fecha) {
+        try {
+            Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            ResultSet rs = stmt.executeQuery("SELECT * FROM tasks WHERE FECHA_TAREA LIKE '" + fecha + "%' AND cuidador = '"+dni+"'");
             //stmt.close();
             return rs;
         } catch (SQLException ex) {
@@ -970,11 +996,11 @@ public class DBManagerZoo {
     }
 
     //devuelve plus salario por especialidad
-    public static boolean comprobarTarea(String dateTime) {
+    public static boolean comprobarTarea(String dateTime, String dni) {
         try {
             // Realizamos la consulta SQL
             Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String sql = "SELECT * FROM tasks WHERE fecha_tarea ='" + dateTime + "';";
+            String sql = "SELECT * FROM tasks WHERE fecha_tarea ='" + dateTime + "' AND cuidador = '"+dni+"'";
             //System.out.println(sql);
             ResultSet rs = stmt.executeQuery(sql);
             //stmt.close();

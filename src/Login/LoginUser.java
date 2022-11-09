@@ -42,8 +42,8 @@ public class LoginUser extends javax.swing.JFrame {
     public LoginUser() {
         initComponents();
         DBManagerZoo.connect();
-        TextPrompt placeholcer = new TextPrompt("DNI:", jTUserLogin);
-        TextPrompt placeholcer2 = new TextPrompt("contraseña:", jPasswordField1);
+        TextPrompt placeholcer = new TextPrompt("12345678A", jTUserLogin);
+        TextPrompt placeholcer2 = new TextPrompt("contraseña", jPasswordField1);
     }
 
     public void ReproducirSonido(boolean seguir) {

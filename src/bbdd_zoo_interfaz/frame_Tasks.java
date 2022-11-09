@@ -453,8 +453,9 @@ public class frame_Tasks extends javax.swing.JFrame {
         String cuidador = jcCuidador.getSelectedItem().toString();
         String hora = dateTimePicker1.getTimePicker().toString();
         //System.out.println(hora);
+        String dni = DBManagerZoo.getDNICaregivers(cuidador);
         String dateTime = "" + date + " " + hora;
-        if (DBManagerZoo.comprobarTarea(dateTime)) {
+        if (DBManagerZoo.comprobarTarea(dateTime, dni)) {
             JOptionPane.showMessageDialog(null, "Ya hay una tarea a esa hora en esa fecha para el empleado "+ cuidador+"\nSeleccione una fecha/hora diferente.");
         }else{
         insertTasks();

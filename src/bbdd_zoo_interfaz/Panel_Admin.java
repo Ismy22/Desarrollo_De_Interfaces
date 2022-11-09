@@ -200,10 +200,10 @@ public class Panel_Admin extends javax.swing.JFrame {
 
     }
 
-    public void rellenarTablaHistoricoFecha() {
+    public void rellenarTablaHistoricoFecha(String dni) {
         String fecha = datePickerHistorico.getDate().toString();
         try {
-            ResultSet rs = DBManagerZoo.getTablaTasksFecha(DEFAULT_CURSOR, DISPOSE_ON_CLOSE, fecha);
+            ResultSet rs = DBManagerZoo.getTablaTasksFecha(DEFAULT_CURSOR, DISPOSE_ON_CLOSE, fecha, dni);
             while (rs.next()) {
                 int animalId = rs.getInt(DB_TASKS_ANIMAL);
                 String animalName = DBManagerZoo.getAnimalName(animalId);
@@ -580,7 +580,7 @@ public class Panel_Admin extends javax.swing.JFrame {
         jPanel3.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setText("Panel del Panico   *");
+        jLabel13.setText("Panel del Panico");
         jLabel13.setBackground(new java.awt.Color(255, 255, 255));
         jLabel13.setFont(new java.awt.Font("Jurassic Park", 1, 48)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
@@ -833,7 +833,7 @@ public class Panel_Admin extends javax.swing.JFrame {
         });
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("22Historico tareas 22");
+        jLabel2.setText(" Historico tareas ");
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Jurassic Park", 1, 70)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
@@ -982,9 +982,9 @@ public class Panel_Admin extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Jurassic  Zoo @");
+        jLabel1.setText("*  Jurassic  Zoo  *");
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Jurassic Park", 1, 48)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Jurassic Park", 1, 80)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
 
         jTablePrincipal.setModel(new javax.swing.table.DefaultTableModel(
@@ -1241,7 +1241,7 @@ public class Panel_Admin extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(596, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jButtonCerrarSesion)
@@ -1273,7 +1273,7 @@ public class Panel_Admin extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jButtonTrabajos))
                             .addComponent(jButtonCompletarTarea))
-                        .addGap(0, 38, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -1288,9 +1288,9 @@ public class Panel_Admin extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonSalir)
                             .addComponent(jButtonCerrarSesion))))
+                .addGap(24, 24, 24)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
-                .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAnimal)
                     .addComponent(jButtonEmpleados)
@@ -1609,13 +1609,16 @@ public class Panel_Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonHistoricoTareasActionPerformed
 
     private void jButtonMostrarFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarFechaActionPerformed
+        
+        String dni =jLabelSesionUser.getText();
         try {
 
             vaciarTablaHistorico();
-            rellenarTablaHistoricoFecha();
+            rellenarTablaHistoricoFecha(dni);
 
         } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(null, "No puede dejar el campo fecha vacío");
+            rellenarTablaHistorico();
         }
 
 
