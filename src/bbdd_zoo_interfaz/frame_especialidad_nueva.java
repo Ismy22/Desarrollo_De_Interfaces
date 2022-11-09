@@ -26,8 +26,8 @@ public class frame_especialidad_nueva extends javax.swing.JFrame {
      */
     public frame_especialidad_nueva() {
         initComponents();
-        TextPrompt placeholcer = new TextPrompt("Nombre de la especialidad:", jTEspecialidad);
-        TextPrompt placeholcer2 = new TextPrompt("Plus de salario:", jTPlusSalario);
+        TextPrompt placeholcer = new TextPrompt("Domador de Velocirraptors", jTEspecialidad);
+        TextPrompt placeholcer2 = new TextPrompt("600", jTPlusSalario);
     }
     
     public void insertEspecialidad() {

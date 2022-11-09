@@ -33,7 +33,7 @@ public class frame_Cuidadores extends javax.swing.JFrame {
     private int y;
 
     /**
-     * Creates new form frame_Cuidadores
+     * Creates new form frameCuidadores
      */
     public frame_Cuidadores() {
         initComponents();
@@ -41,11 +41,11 @@ public class frame_Cuidadores extends javax.swing.JFrame {
         UI.put("nimbusBlueGrey", new ColorUIResource(103, 0, 3));
         jTableEmpleados.getTableHeader().setForeground(Color.white);
         //jTableEmpleados.setBackground(Color.getHSBColor(255, 255, 255));
-        TextPrompt placeholcer = new TextPrompt("Nombre:", jtNombreAltaCuidador);
-        TextPrompt placeholcer2 = new TextPrompt("Apellidos:", jtApellidosAltaCuidador);
-        TextPrompt placeholcer3 = new TextPrompt("DNI:", jtDNIAltaCuidador);
+        TextPrompt placeholcer = new TextPrompt("Maria", jtNombreAltaCuidador);
+        TextPrompt placeholcer2 = new TextPrompt("García García", jtApellidosAltaCuidador);
+        TextPrompt placeholcer3 = new TextPrompt("12345678A", jtDNIAltaCuidador);
         TextPrompt placeholcer4 = new TextPrompt("Contraseña:", jTPassEmpleado);
-        TextPrompt placeholcer5 = new TextPrompt("Salario base:", jtAltaSalarioEmpleado);
+        TextPrompt placeholcer5 = new TextPrompt("1200", jtAltaSalarioEmpleado);
     }
 
     // Configuración de la tabla Caregivers

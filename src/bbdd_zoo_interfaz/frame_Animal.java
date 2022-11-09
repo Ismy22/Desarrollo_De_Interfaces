@@ -47,8 +47,8 @@ public class frame_Animal extends javax.swing.JFrame {
 //        Login.LoginUser open = new LoginUser();
 //        open.ReproducirSonido(nombreSonido);
 
-        TextPrompt placeholcer = new TextPrompt("Nombre del animal:", jtNombreAltaAnimal);
-        TextPrompt placeholcer2 = new TextPrompt("Peso en Kg:", jtPeso);
+        TextPrompt placeholcer = new TextPrompt("Tobby", jtNombreAltaAnimal);
+        TextPrompt placeholcer2 = new TextPrompt("1800", jtPeso);
     }
 
     // Configuración de la tabla Animals

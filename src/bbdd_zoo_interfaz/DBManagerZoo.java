@@ -867,6 +867,19 @@ public class DBManagerZoo {
         }
 
     }
+    
+    public static ResultSet getTablaTasksSinCompletar(int resultSetType, int resultSetConcurrency) {
+        try {
+            Statement stmt = conn.createStatement(resultSetType, resultSetConcurrency);
+            ResultSet rs = stmt.executeQuery("SELECT * FROM TASKS WHERE TAREA_COMPLETADA = '0'");
+            //stmt.close();
+            return rs;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+
+    }
 
     public static ResultSet getTablaTasksFecha(int resultSetType, int resultSetConcurrency, String fecha) {
         try {

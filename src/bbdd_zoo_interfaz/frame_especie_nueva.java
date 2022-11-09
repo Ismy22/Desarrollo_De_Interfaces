@@ -26,7 +26,7 @@ public class frame_especie_nueva extends javax.swing.JFrame {
      */
     public frame_especie_nueva() {
         initComponents();
-        TextPrompt placeholcer = new TextPrompt("Nombre de la especie:", jTEspecie);
+        TextPrompt placeholcer = new TextPrompt("Megalodón", jTEspecie);
     }
     
     public void insertEspecie() {

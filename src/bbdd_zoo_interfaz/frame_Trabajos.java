@@ -22,11 +22,11 @@ public class frame_Trabajos extends javax.swing.JFrame {
     private int y;
 
     /**
-     * Creates new form frame_Trabajos
+     * Creates new form frameTrabajos
      */
     public frame_Trabajos() {
         initComponents();
-        TextPrompt placeholcer = new TextPrompt("Trabajo a realizar:", jTNombreTrabajo);
+        TextPrompt placeholcer = new TextPrompt("Limpiar jaula", jTNombreTrabajo);
     }
 
     public void insertTrabajo() {

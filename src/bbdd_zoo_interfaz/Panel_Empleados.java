@@ -88,7 +88,7 @@ public class Panel_Empleados extends javax.swing.JFrame {
         }
     }
     
-        public void vaciarTablaPrincipal() {
+        public void vaciarTablaEmpleados() {
 
         //vaciamos la tabla recorriendola con un bucle for
         DefaultTableModel tb = (DefaultTableModel) jTableLoginEmpleados.getModel();
@@ -163,6 +163,33 @@ public class Panel_Empleados extends javax.swing.JFrame {
         }
     
     }
+    
+    public void rellenarTablaEmpleadosFecha() {
+        String fecha = datePickerHistorico.getDate().toString();
+        try {
+            ResultSet rs = DBManagerZoo.getTablaTasksFecha(DEFAULT_CURSOR, DISPOSE_ON_CLOSE, fecha);
+            while (rs.next()) {
+                int idtarea = rs.getInt(DB_TASKS_ID_TAREA);
+                int animalId = rs.getInt(DB_TASKS_ANIMAL);
+                String animalName = DBManagerZoo.getAnimalName(animalId);
+                String plus = rs.getString(DB_TASKS_PLUS_SALARIO);
+                String tarea = rs.getString(DB_TASKS_TAREA);
+                String fecha1 = rs.getString(DB_TASKS_FECHA);
+                Boolean realizada = rs.getBoolean(DB_TASKS_REALIZADO);
+                Boolean completada = rs.getBoolean("tarea_completada");
+
+                DefaultTableModel model = (DefaultTableModel) jTableLoginEmpleados.getModel();
+                Object[] row = {idtarea, tarea, animalName, tarea, fecha1, realizada, completada};
+                model.addRow(row);
+            }
+            rs.close();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -185,6 +212,8 @@ public class Panel_Empleados extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jButtonSalirVisitante = new javax.swing.JButton();
         jButtonDesmarcarTarea = new javax.swing.JButton();
+        jButtonMostrarFecha = new javax.swing.JButton();
+        datePickerHistorico = new com.github.lgooddatepicker.components.DatePicker();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -338,6 +367,28 @@ public class Panel_Empleados extends javax.swing.JFrame {
             }
         });
 
+        jButtonMostrarFecha.setBackground(new java.awt.Color(103, 0, 3));
+        jButtonMostrarFecha.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        jButtonMostrarFecha.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonMostrarFecha.setText("Mostrar");
+        jButtonMostrarFecha.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButtonMostrarFechaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButtonMostrarFechaMouseExited(evt);
+            }
+        });
+        jButtonMostrarFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMostrarFechaActionPerformed(evt);
+            }
+        });
+
+        datePickerHistorico.setBackground(new java.awt.Color(255, 255, 255));
+        datePickerHistorico.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        datePickerHistorico.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -346,22 +397,26 @@ public class Panel_Empleados extends javax.swing.JFrame {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButtonSalirVisitante)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonCerrarVisitante))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(117, 117, 117)
-                        .addComponent(jButtonDesmarcarTarea)
-                        .addGap(52, 52, 52)
-                        .addComponent(jButtonTareaRealizada))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelDineroTotalEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabelBienvenidoNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                        .addGap(0, 2, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 599, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                                .addComponent(jButtonTareaRealizada, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonDesmarcarTarea)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(datePickerHistorico, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButtonMostrarFecha, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addComponent(jLabelBienvenidoNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addComponent(jButtonSalirVisitante)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButtonCerrarVisitante)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabelDineroTotalEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(176, 176, 176))))
+                    .addComponent(jScrollPane1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -373,7 +428,7 @@ public class Panel_Empleados extends javax.swing.JFrame {
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+            .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonSalirVisitante)
@@ -382,13 +437,18 @@ public class Panel_Empleados extends javax.swing.JFrame {
                 .addComponent(jLabelBienvenidoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(103, 103, 103)
                 .addComponent(jLabelDineroTotalEmpleado)
-                .addGap(18, 18, 18)
+                .addGap(4, 4, 4)
+                .addComponent(jButtonMostrarFecha)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonTareaRealizada)
                     .addComponent(jButtonDesmarcarTarea)
-                    .addComponent(jButtonTareaRealizada))
-                .addGap(15, 15, 15)
+                    .addComponent(datePickerHistorico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel6))
             .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel7Layout.createSequentialGroup()
                     .addGap(111, 111, 111)
@@ -427,7 +487,7 @@ public class Panel_Empleados extends javax.swing.JFrame {
         int id = (int) jTableLoginEmpleados.getValueAt(fila, 0);
         updateDsmarcarTarea(id);
         String dni = DBManagerZoo.getDNICaregivers(jLabelBienvenidoNombre.getText());
-        vaciarTablaPrincipal();
+        vaciarTablaEmpleados();
         rellenarTabla(dni);
     }//GEN-LAST:event_jButtonDesmarcarTareaActionPerformed
 
@@ -446,7 +506,7 @@ public class Panel_Empleados extends javax.swing.JFrame {
         int id = (int) jTableLoginEmpleados.getValueAt(fila, 0);
         updateTareaRealizada(id);
         String dni = DBManagerZoo.getDNICaregivers(jLabelBienvenidoNombre.getText());
-        vaciarTablaPrincipal();
+        vaciarTablaEmpleados();
         rellenarTabla(dni);
     }//GEN-LAST:event_jButtonTareaRealizadaActionPerformed
 
@@ -499,6 +559,29 @@ public class Panel_Empleados extends javax.swing.JFrame {
         jButtonTareaRealizada.setForeground(Color.WHITE);
     }//GEN-LAST:event_jButtonTareaRealizadaMouseExited
 
+    private void jButtonMostrarFechaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonMostrarFechaMouseEntered
+        jButtonMostrarFecha.setBackground(new Color(217, 165, 9));
+        jButtonMostrarFecha.setForeground(Color.BLACK);
+        jButtonMostrarFecha.setCursor(new Cursor(HAND_CURSOR));
+    }//GEN-LAST:event_jButtonMostrarFechaMouseEntered
+
+    private void jButtonMostrarFechaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonMostrarFechaMouseExited
+        jButtonMostrarFecha.setBackground(new Color(103, 0, 3));
+        jButtonMostrarFecha.setForeground(Color.WHITE);
+    }//GEN-LAST:event_jButtonMostrarFechaMouseExited
+
+    private void jButtonMostrarFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarFechaActionPerformed
+        try {
+
+            vaciarTablaEmpleados();
+            rellenarTablaEmpleadosFecha();
+
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(null, "No puede dejar el campo fecha vacío");
+        }
+
+    }//GEN-LAST:event_jButtonMostrarFechaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -535,8 +618,10 @@ public class Panel_Empleados extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.github.lgooddatepicker.components.DatePicker datePickerHistorico;
     private javax.swing.JButton jButtonCerrarVisitante;
     private javax.swing.JButton jButtonDesmarcarTarea;
+    private javax.swing.JButton jButtonMostrarFecha;
     private javax.swing.JButton jButtonSalirVisitante;
     private javax.swing.JButton jButtonTareaRealizada;
     private javax.swing.JLabel jLabel1;
