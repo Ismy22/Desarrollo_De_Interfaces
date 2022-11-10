@@ -13,8 +13,7 @@ import java.security.NoSuchAlgorithmException;
  * @author Ismael
  */
 public class Utilidades_Control {
-    
-    
+
     public static boolean contieneSoloLetras(String cadena) {
         for (int x = 0; x < cadena.length(); x++) {
             char c = cadena.charAt(x);
@@ -25,23 +24,23 @@ public class Utilidades_Control {
         }
         return true;
     }
-    
+
     public static boolean contieneSoloNumeros(String cadena) {
-    // Si la cadena está vacía, debemos devolver false
-    if (cadena.length() == 0) {
-        return false;
-    }
-    for (int x = 0; x < cadena.length(); x++) {
-        char c = cadena.charAt(x);
-        // Si no está entre 0 y 9
-        if (!(c >= '0' && c <= '9')) {
+        // Si la cadena está vacía, debemos devolver false
+        if (cadena.length() == 0) {
             return false;
         }
+        for (int x = 0; x < cadena.length(); x++) {
+            char c = cadena.charAt(x);
+            // Si no está entre 0 y 9
+            if (!(c >= '0' && c <= '9')) {
+                return false;
+            }
+        }
+        return true;
     }
-    return true;
-}
-    
-        public static String getMD5(String input) {
+
+    public static String getMD5(String input) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             byte[] messageDigest = md.digest(input.getBytes());
@@ -56,7 +55,5 @@ public class Utilidades_Control {
             throw new RuntimeException(e);
         }
     }
-    
-    
-    
+
 }

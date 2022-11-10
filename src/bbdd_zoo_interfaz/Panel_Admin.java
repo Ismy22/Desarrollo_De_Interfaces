@@ -13,11 +13,15 @@ import java.awt.MouseInfo;
 import java.awt.Point;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Objects;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -188,7 +192,6 @@ public class Panel_Admin extends javax.swing.JFrame {
                 String fecha = rs.getString(DB_TASKS_FECHA);
                 Boolean realizada = rs.getBoolean(DB_TASKS_REALIZADO);
                 Boolean completada = rs.getBoolean("Tarea_completada");
-                
 
                 DefaultTableModel model = (DefaultTableModel) jTablehistorico.getModel();
                 Object[] row = {animalName, cuidadorName, tarea, fecha, realizada, completada};
@@ -214,11 +217,51 @@ public class Panel_Admin extends javax.swing.JFrame {
                 String fecha1 = rs.getString(DB_TASKS_FECHA);
                 Boolean realizada = rs.getBoolean(DB_TASKS_REALIZADO);
                 Boolean completada = rs.getBoolean("tarea_completada");
-                
 
                 DefaultTableModel model = (DefaultTableModel) jTablehistorico.getModel();
                 Object[] row = {animalName, cuidadorName, tarea, fecha1, realizada, completada};
                 model.addRow(row);
+            }
+            rs.close();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+    }
+    
+    public void rellenarconCambios(){
+        
+        vaciarTablaPrincipal();
+        TableColumnModel tableColumnModel = jTablePrincipal.getColumnModel();
+        jTablePrincipal.removeColumn(new TableColumn(5));
+        TableColumn tableColumn = tableColumnModel.getColumn(0);
+        TableColumn tableColumn1 = tableColumnModel.getColumn(1);
+        TableColumn tableColumn2 = tableColumnModel.getColumn(2);
+        TableColumn tableColumn3 = tableColumnModel.getColumn(3);
+        jTablePrincipal.removeColumn(tableColumnModel.getColumn(6));
+        jTablePrincipal.removeColumn(tableColumnModel.getColumn(5));
+        jTablePrincipal.removeColumn(tableColumnModel.getColumn(4));
+        tableColumn.setHeaderValue("Id");
+        tableColumn1.setHeaderValue("Nombre");
+        tableColumn2.setHeaderValue("Especie");
+        tableColumn3.setHeaderValue("Peso");
+        jTablePrincipal.repaint();
+        
+        try {
+            ResultSet rs = DBManagerZoo.getTablaAnimals(DEFAULT_CURSOR, DISPOSE_ON_CLOSE);
+            while (rs.next()) {
+                int id = rs.getInt("id_animal");
+                String nombre = rs.getString("nombre");
+                String especie = rs.getString("especie");
+                int peso = rs.getInt("peso");
+
+                DefaultTableModel model = (DefaultTableModel) jTablePrincipal.getModel();
+                Object[] row = {id, nombre, especie, peso};
+                model.addRow(row);
+                
+                jTablePrincipal.repaint();
+
             }
             rs.close();
 
@@ -1029,6 +1072,9 @@ public class Panel_Admin extends javax.swing.JFrame {
         jButtonAnimal.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jButtonAnimal.setForeground(new java.awt.Color(255, 255, 255));
         jButtonAnimal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonAnimalMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButtonAnimalMouseEntered(evt);
             }
@@ -1322,9 +1368,13 @@ public class Panel_Admin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAnimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnimalActionPerformed
-
+        
         frame_Animal open = new frame_Animal();
         open.setVisible(true);
+        //todo esto se puede borrar, es la prueba de la tabla al pulsar en animales para modificar las columanas a mostrar
+        //rellenarconCambios();
+        
+        
     }//GEN-LAST:event_jButtonAnimalActionPerformed
 
     private void jButtonEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEmpleadosActionPerformed
@@ -1360,8 +1410,8 @@ public class Panel_Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonTrabajosActionPerformed
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
-        vaciarTablaPrincipal();
-        rellenarTablaPrincipal();
+//        vaciarTablaPrincipal();
+//        rellenarTablaPrincipal();
         int fila = jTablePrincipal.getSelectedRow();
         if (fila < 0) {
             jButtonModificarTarea.setBackground(new Color(103, 0, 3));
@@ -1608,7 +1658,7 @@ public class Panel_Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonHistoricoTareasActionPerformed
 
     private void jButtonMostrarFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarFechaActionPerformed
-        String fecha =datePickerHistoricoTareas.getDate().toString(); 
+        String fecha = datePickerHistoricoTareas.getDate().toString();
         try {
 
             vaciarTablaHistorico();
@@ -1970,6 +2020,12 @@ public class Panel_Admin extends javax.swing.JFrame {
             jButtonModificarTarea.setForeground(Color.BLACK);
         }
     }//GEN-LAST:event_jTablePrincipalMouseClicked
+
+    private void jButtonAnimalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonAnimalMouseClicked
+        jButtonAnimal.setBackground(new Color(217, 165, 9));
+        jButtonAnimal.setForeground(Color.BLACK);
+        jButtonAnimal.setCursor(new Cursor(HAND_CURSOR)); 
+    }//GEN-LAST:event_jButtonAnimalMouseClicked
 
     /**
      * @param args the command line arguments
