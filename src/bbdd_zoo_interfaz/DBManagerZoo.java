@@ -37,18 +37,17 @@ public class DBManagerZoo {
     private static Connection conn = null;
 
     // Configuración de la conexión a la base de datos
-    private static final String DB_HOST = "localhost";
+    private static final String DB_HOST = "servidor.choto.es";
     private static final String DB_PORT = "3306";
-    private static final String DB_NAME = "zoologic";
-    private static final String DB_URL = "jdbc:mysql://" + DB_HOST + ":" + DB_PORT + "/" + DB_NAME + ""
-            + "?serverTimezone=UTC";
-    private static final String DB_USER = "root";
-    private static final String DB_PASS = "1234";
+    private static final String DB_NAME = "alu_Ismy";
+    private static final String DB_URL = "jdbc:mysql://" + DB_HOST + ":" + DB_PORT + "/" + DB_NAME;
+    private static final String DB_USER = "unalumno";
+    private static final String DB_PASS = "soyunalumno2022";
     private static final String DB_MSQ_CONN_OK = "CONEXIÓN CORRECTA";
     private static final String DB_MSQ_CONN_NO = "ERROR EN LA CONEXIÓN";
 
     // Configuración de la tabla Animals
-    private static final String DB_ANIMALS = "ANIMALS";
+    private static final String DB_ANIMALS = "animals";
     private static final String DB_ANIMALS_SELECT = "SELECT * FROM " + DB_ANIMALS;
     private static final String DB_ANIMALS_SELECT_ID = "SELECT ID FROM " + DB_ANIMALS;
     private static final String DB_ANIMALS_ID = "ID_ANIMAL";
@@ -58,7 +57,7 @@ public class DBManagerZoo {
     private static final String DB_ANIMALS_PESO = "PESO";
 
     // Configuración de la tabla Caregivers
-    private static final String DB_CAREGIVERS = "CAREGIVERS";
+    private static final String DB_CAREGIVERS = "caregivers";
     private static final String DB_CAREGIVERS_SELECT = "SELECT * FROM " + DB_CAREGIVERS;
     private static final String DB_CAREGIVERS_ID_CAREGIVER = "ID_CAREGIVER";
     private static final String DB_CAREGIVERS_NOM = "NOMBRE";
@@ -70,7 +69,7 @@ public class DBManagerZoo {
     private static final String DB_CAREGIVERS_SALARIO = "SALARIO_BASE";
 
     // Configuración de la tabla Tasks
-    private static final String DB_TASKS = "TASKS";
+    private static final String DB_TASKS = "tasks";
     private static final String DB_TASKS_SELECT = "SELECT * FROM " + DB_TASKS;
     private static final String DB_TASKS_ID_TAREA = "ID_TAREA";
     private static final String DB_TASKS_TAREA = "TAREA";
@@ -80,7 +79,7 @@ public class DBManagerZoo {
     private static final String DB_TASKS_FECHA = "FECHA_TAREA";
 
     // Configuración de la tabla Login
-    private static final String DB_LOGIN = "LOGIN";
+    private static final String DB_LOGIN = "login";
     private static final String DB_LOGIN_SELECT = "SELECT * FROM " + DB_LOGIN;
     private static final String DB_LOGIN_NOMBRE = "NOMBRE";
     private static final String DB_LOGIN_APELLIDOS = "APELLIDOS";
@@ -89,21 +88,21 @@ public class DBManagerZoo {
     private static final String DB_LOGIN_TIPO_USUARIO = "TIPO_USUARIO";
 
     // Configuración de la tabla Especie
-    private static final String DB_ESPECIE = "ESPECIE";
+    private static final String DB_ESPECIE = "especie";
     private static final String DB_ESPECIE_SELECT = "SELECT * FROM " + DB_ESPECIE;
     private static final String DB_ESPECIE_ID_ESPECIE = "ID_ESPECIE";
     private static final String DB_ESPECIE_NOMBRE_ESPECIE = "NOMBRE_ESPECIE";
     private static final String DB_ESPECIE_PELIGROSIDAD = "PELIGROSIDAD";
 
     // Configuración de la tabla Especialidad
-    private static final String DB_ESPECIALIDAD = "ESPECIALIDAD";
+    private static final String DB_ESPECIALIDAD = "especialidad";
     private static final String DB_ESPECIALIDAD_SELECT = "SELECT * FROM " + DB_ESPECIALIDAD;
     private static final String DB_ESPECIALIDAD_ID_ESPECIALIDAD = "ID_ESPECIE";
     private static final String DB_ESPECIALIDAD_NOMBRE_ESPECIALIDAD = "NOMBRE_ESPECIALIDAD";
     private static final String DB_ESPECIALIDAD_PLUS_SALARIO = "PLUS_SALARIO";
 
     // Configuración de la tabla Trabajo
-    private static final String DB_TRABAJO = "TRABAJO";
+    private static final String DB_TRABAJO = "trabajo";
     private static final String DB_TRABAJO_SELECT = "SELECT * FROM " + DB_TRABAJO;
     private static final String DB_TRABAJO_ID_TRABAJO = "ID_TRABAJO";
     private static final String DB_TRABAJO_NOMBRE_TRABAJO = "NOMBRE_TRABAJO";
@@ -138,9 +137,9 @@ public class DBManagerZoo {
      */
     public static boolean connect() {
         try {
-            //System.out.print("Conectando a la base de datos...");
+            
             conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
-            //System.out.println("OK!");
+            
             return true;
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -157,13 +156,13 @@ public class DBManagerZoo {
         // Comprobamos estado de la conexión
         try {
             if (conn != null && conn.isValid(0)) {
-                //System.out.println(DB_MSQ_CONN_OK);
+                
                 return true;
             } else {
                 return false;
             }
         } catch (SQLException ex) {
-            System.out.println(DB_MSQ_CONN_NO);
+            
             ex.printStackTrace();
             return false;
         }
@@ -174,9 +173,9 @@ public class DBManagerZoo {
      */
     public static void close() {
         try {
-            System.out.print("Cerrando la conexión...");
+            
             conn.close();
-            //System.out.println("OK!");
+            
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -289,6 +288,19 @@ public class DBManagerZoo {
         }
 
     }
+    
+//    public ResultSet id_cuidador (String nombre){
+//        try {
+//            Statement st = conn.createStatement();
+//            String sql = "SELECT * FROM CAREGIVERS where nombre = '"+nombre+"'";
+//            ResultSet rs = st.executeQuery(sql);
+//            
+//            return rs;
+//        } catch (SQLException ex) {
+//            Logger.getLogger(DBManagerZoo.class.getName()).log(Level.SEVERE, null, ex);
+//            return null;
+//        }
+//    }
 
     /**
      * Solicita a la BD el animal con id indicado
@@ -301,7 +313,7 @@ public class DBManagerZoo {
         try {
             // Realizamos la consulta SQL
             Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String sql = "SELECT id_animal FROM `animals` WHERE NOMBRE" + "='" + nombre + "';";
+            String sql = "SELECT ID_ANIMAL FROM animals WHERE NOMBRE = '" + nombre + "';";
             //System.out.println(sql);
             ResultSet rs = stmt.executeQuery(sql);
 
@@ -424,7 +436,7 @@ public class DBManagerZoo {
         try {
             // Realizamos la consulta SQL
             Statement stmt = conn.createStatement();
-            String sql = "SELECT * FROM ANIMALS WHERE ID ='" + id + "'";
+            String sql = "SELECT * FROM animals WHERE ID ='" + id + "'";
             //System.out.println(sql);
             ResultSet rs = stmt.executeQuery(sql);
 
@@ -609,7 +621,7 @@ public class DBManagerZoo {
         try {
             // Realizamos la consulta SQL
             Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String sql = "SELECT dni FROM CAREGIVERS WHERE nombre ='" + nombre + "';";
+            String sql = "SELECT dni FROM caregivers WHERE nombre ='" + nombre + "';";
             //System.out.println(sql);
             ResultSet rs = stmt.executeQuery(sql);
             //stmt.close();
@@ -699,7 +711,7 @@ public class DBManagerZoo {
         try {
             // Realizamos la consulta SQL
             Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String sql = "SELECT * FROM LOGIN WHERE DNI ='" + dni + "' AND PASS = '" + passMd5 + "'";
+            String sql = "SELECT * FROM login WHERE DNI ='" + dni + "' AND PASS = '" + passMd5 + "'";
             //System.out.println(sql);
             ResultSet rs = stmt.executeQuery(sql);
             //stmt.close();
@@ -722,7 +734,7 @@ public class DBManagerZoo {
         try {
             // Realizamos la consulta SQL
             Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String sql = "SELECT nombre FROM LOGIN WHERE DNI ='" + dni + "'";
+            String sql = "SELECT nombre FROM login WHERE DNI ='" + dni + "'";
             //System.out.println(sql);
             ResultSet rs = stmt.executeQuery(sql);
             //stmt.close();
@@ -746,7 +758,7 @@ public class DBManagerZoo {
         try {
             // Realizamos la consulta SQL
             Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String sql = "SELECT * FROM LOGIN WHERE DNI ='" + dni + "'";
+            String sql = "SELECT * FROM login WHERE DNI ='" + dni + "'";
             //System.out.println(sql);
             ResultSet rs = stmt.executeQuery(sql);
             //stmt.close();
@@ -798,7 +810,7 @@ public class DBManagerZoo {
         try {
             // Realizamos la consulta SQL
             Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String sql = "SELECT id_login FROM LOGIN WHERE DNI ='" + dni + "'";
+            String sql = "SELECT id_login FROM login WHERE DNI ='" + dni + "'";
             //System.out.println(sql);
             ResultSet rs = stmt.executeQuery(sql);
             //stmt.close();
@@ -822,7 +834,7 @@ public class DBManagerZoo {
         try {
             // Realizamos la consulta SQL
             Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String sql = "SELECT TIPO_USUARIO FROM LOGIN WHERE DNI ='" + dni + "' AND " + DB_LOGIN_PASS + "= '" + pass + "';";
+            String sql = "SELECT TIPO_USUARIO FROM login WHERE DNI ='" + dni + "' AND " + DB_LOGIN_PASS + "= '" + pass + "';";
             //System.out.println(sql);
             ResultSet rs = stmt.executeQuery(sql);
             //stmt.close();
@@ -871,7 +883,7 @@ public class DBManagerZoo {
     public static ResultSet getTablaTasksSinCompletar(int resultSetType, int resultSetConcurrency) {
         try {
             Statement stmt = conn.createStatement(resultSetType, resultSetConcurrency);
-            ResultSet rs = stmt.executeQuery("SELECT * FROM TASKS WHERE TAREA_COMPLETADA = '0'");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM tasks WHERE TAREA_COMPLETADA = '0'");
             //stmt.close();
             return rs;
         } catch (SQLException ex) {

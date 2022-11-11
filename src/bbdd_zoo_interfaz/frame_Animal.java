@@ -937,13 +937,13 @@ public class frame_Animal extends javax.swing.JFrame {
             int id = (int) jTableAnimales.getValueAt(filaseleccionada, 0);
             String nombre = (String) jTableAnimales.getValueAt(filaseleccionada, 1);
             String especie = (String) jTableAnimales.getValueAt(filaseleccionada, 2);
-            int peso = (int) jTableAnimales.getValueAt(filaseleccionada, 3);
+            String peso = jTableAnimales.getValueAt(filaseleccionada, 3).toString();
 
             jtIdEditarAnimal.setText(Integer.toString(id));
             jtNombreEditarAnimal.setText(nombre);
             listEspecie();
             jCbEspecieEditarAnimal.setSelectedItem(especie);
-            jtPesoEditarAnimal.setText(String.valueOf(peso));
+            jtPesoEditarAnimal.setText(peso);
 
         }
     }//GEN-LAST:event_jBModificarAnimalActionPerformed

@@ -48,7 +48,7 @@ public class Panel_Admin extends javax.swing.JFrame {
         // Cargamos driver y conectamos con la BD
         DBManagerZoo.loadDriver();
         DBManagerZoo.connect();
-
+        
         rellenarTablaPrincipal();
         listAnimals();
         listCaregivers();
@@ -274,10 +274,13 @@ public class Panel_Admin extends javax.swing.JFrame {
     public void listPlusSalario() {
 
         int animalId = DBManagerZoo.getIdAnimal(jcEditarAnimal.getSelectedItem().toString());
+        System.out.println(animalId);
         //System.out.println(extraerId);
         //System.out.println(id+"hola");
         String especie = DBManagerZoo.getEspecieAnimal(animalId);
+        System.out.println(especie);
         int nPeligro = DBManagerZoo.getPeligroAnimal(especie);
+        System.out.println(nPeligro);
 
         switch (nPeligro) {
             case 0:
@@ -379,9 +382,9 @@ public class Panel_Admin extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         datePickerHistoricoTareas = new com.github.lgooddatepicker.components.DatePicker();
         jButtonMostrarFecha = new javax.swing.JButton();
+        jButtonAtrasHistorico = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTablehistorico = new javax.swing.JTable();
-        jButtonAtrasHistorico = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -906,6 +909,25 @@ public class Panel_Admin extends javax.swing.JFrame {
             }
         });
 
+        jButtonAtrasHistorico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Login/Imagen/hacia-atras (1).png"))); // NOI18N
+        jButtonAtrasHistorico.setBackground(new java.awt.Color(103, 0, 3));
+        jButtonAtrasHistorico.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButtonAtrasHistoricoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButtonAtrasHistoricoMouseExited(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jButtonAtrasHistoricoMouseReleased(evt);
+            }
+        });
+        jButtonAtrasHistorico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAtrasHistoricoActionPerformed(evt);
+            }
+        });
+
         jTablehistorico.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -945,19 +967,25 @@ public class Panel_Admin extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 754, Short.MAX_VALUE)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonMostrarFecha)
                 .addGap(18, 18, 18)
                 .addComponent(datePickerHistoricoTareas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 754, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButtonAtrasHistorico)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
+                .addContainerGap()
+                .addComponent(jButtonAtrasHistorico)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -979,25 +1007,6 @@ public class Panel_Admin extends javax.swing.JFrame {
             jFrameHistoricoTareasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
-
-        jButtonAtrasHistorico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Login/Imagen/hacia-atras (1).png"))); // NOI18N
-        jButtonAtrasHistorico.setBackground(new java.awt.Color(103, 0, 3));
-        jButtonAtrasHistorico.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButtonAtrasHistoricoMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButtonAtrasHistoricoMouseExited(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jButtonAtrasHistoricoMouseReleased(evt);
-            }
-        });
-        jButtonAtrasHistorico.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAtrasHistoricoActionPerformed(evt);
-            }
-        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -1422,7 +1431,8 @@ public class Panel_Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowGainedFocus
 
     private void jButtonModificarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarTareaActionPerformed
-
+        
+        
         //Guardamos en un entero la fila seleccionada.
         int filaseleccionada = jTablePrincipal.getSelectedRow();
 
@@ -1430,15 +1440,14 @@ public class Panel_Admin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No ha seleccionado ninguna fila.");
         } else {
 
-            jFrameHistoricoTareas.setVisible(true);
-            jFrameHistoricoTareas.isFocusableWindow();
+            jFrameEditarTarea.setVisible(true);
 
-            listAnimals();
+            
             //String ayuda = tabla.getValueAt(filaseleccionada, num_columna).toString());
-            String animal = (String) jTablePrincipal.getValueAt(filaseleccionada, 0);
-            String cuidador = (String) jTablePrincipal.getValueAt(filaseleccionada, 1);
-            String tarea = (String) jTablePrincipal.getValueAt(filaseleccionada, 2);
-            String fecha = (String) jTablePrincipal.getValueAt(filaseleccionada, 3);
+            String animal = (String) jTablePrincipal.getValueAt(filaseleccionada, 1);
+            String cuidador = (String) jTablePrincipal.getValueAt(filaseleccionada, 2);
+            String tarea = (String) jTablePrincipal.getValueAt(filaseleccionada, 3);
+            String fecha = (String) jTablePrincipal.getValueAt(filaseleccionada, 4);
 
             String date = fecha.substring(0, 10);
             String time = fecha.substring(12, 16);
@@ -1452,40 +1461,40 @@ public class Panel_Admin extends javax.swing.JFrame {
 //            System.out.println(dia);
             switch (mes) {
                 case "01":
-                    dateMes = "enero";
+                    dateMes = "January";
                     break;
                 case "02":
-                    dateMes = "febrero";
+                    dateMes = "February";
                     break;
                 case "03":
-                    dateMes = "marzo";
+                    dateMes = "March";
                     break;
                 case "04":
-                    dateMes = "abril";
+                    dateMes = "April";
                     break;
                 case "05":
-                    dateMes = "mayo";
+                    dateMes = "May";
                     break;
                 case "06":
-                    dateMes = "junio";
+                    dateMes = "June";
                     break;
                 case "07":
-                    dateMes = "julio";
+                    dateMes = "July";
                     break;
                 case "08":
-                    dateMes = "agosto";
+                    dateMes = "August";
                     break;
                 case "09":
-                    dateMes = "septiembre";
+                    dateMes = "September";
                     break;
                 case "10":
-                    dateMes = "octubre";
+                    dateMes = "October";
                     break;
                 case "11":
-                    dateMes = "noviembre";
+                    dateMes = "November";
                     break;
                 case "12":
-                    dateMes = "diciembre";
+                    dateMes = "Dicember";
                     break;
 
                 default:
@@ -1493,8 +1502,10 @@ public class Panel_Admin extends javax.swing.JFrame {
             }
             jcEditarTarea.setSelectedItem(tarea);
             jcEditarCuidador.setSelectedItem(cuidador);
+            
+            
             jcEditarAnimal.setSelectedItem(animal);
-            dateTimePickerEditar.datePicker.setText(dia + " de " + dateMes + " de " + year);
+            dateTimePickerEditar.datePicker.setText(dia + " " + dateMes + " " + year);
             dateTimePickerEditar.timePicker.setText(time);
 
             listPlusSalario();
