@@ -646,7 +646,7 @@ public class DBManagerZoo {
         try {
             // Realizamos la consulta SQL
             Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String sql = "SELECT especialidad FROM CAREGIVERS WHERE dni ='" + dni + "';";
+            String sql = "SELECT especialidad FROM caregivers WHERE dni ='" + dni + "';";
             //System.out.println(sql);
             ResultSet rs = stmt.executeQuery(sql);
             //stmt.close();
@@ -671,7 +671,7 @@ public class DBManagerZoo {
         try {
             // Realizamos la consulta SQL
             Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String sql = "SELECT salario_base FROM CAREGIVERS WHERE dni ='" + dni + "';";
+            String sql = "SELECT salario_base FROM caregivers WHERE dni ='" + dni + "';";
             //System.out.println(sql);
             ResultSet rs = stmt.executeQuery(sql);
             //stmt.close();

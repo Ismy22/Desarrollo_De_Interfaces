@@ -7,9 +7,12 @@ package bbdd_Zoo_Interfaz;
 import Utilidades.TextPrompt;
 import static bbdd_Zoo_Interfaz.frame_Animal.updateAnimal;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Cursor;
 import static java.awt.Frame.DEFAULT_CURSOR;
 import static java.awt.Frame.HAND_CURSOR;
+import java.awt.Graphics;
+import java.awt.Insets;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.sql.ResultSet;
@@ -19,6 +22,7 @@ import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+import javax.swing.border.Border;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.DefaultTableModel;
 
@@ -36,6 +40,7 @@ public class frame_Cuidadores extends javax.swing.JFrame {
      */
     public frame_Cuidadores() {
         initComponents();
+        
         UIManager UI = new UIManager();
         UI.put("nimbusBlueGrey", new ColorUIResource(103, 0, 3));
         jTableEmpleados.getTableHeader().setForeground(Color.white);
@@ -43,7 +48,7 @@ public class frame_Cuidadores extends javax.swing.JFrame {
         TextPrompt placeholcer = new TextPrompt("Maria", jtNombreAltaCuidador);
         TextPrompt placeholcer2 = new TextPrompt("García García", jtApellidosAltaCuidador);
         TextPrompt placeholcer3 = new TextPrompt("12345678A", jtDNIAltaCuidador);
-        TextPrompt placeholcer4 = new TextPrompt("Contraseña:", jTPassEmpleado);
+        TextPrompt placeholcer4 = new TextPrompt("Contraseña:", jPasswordField1);
         TextPrompt placeholcer5 = new TextPrompt("1200", jtAltaSalarioEmpleado);
     }
 
@@ -142,7 +147,8 @@ public class frame_Cuidadores extends javax.swing.JFrame {
         String apellidos = jtApellidosAltaCuidador.getText();
         String dni = jtDNIAltaCuidador.getText();
         Boolean comprobarDni = DBManagerZoo.validarNifONie(dni);
-        String pass = jTPassEmpleado.getText();
+        char[] arrayC = jPasswordField1.getPassword();
+        String pass = new String(arrayC);
         String passMd5 = Utilidades.Utilidades_Control.getMD5(pass);
         String especialidad = jcbEspecialidadAltaEmpleados.getSelectedItem().toString();
         String cargo = jCbCargo.getSelectedItem().toString();
@@ -157,7 +163,8 @@ public class frame_Cuidadores extends javax.swing.JFrame {
         String nombre = jtNombreAltaCuidador.getText();
         String apellidos = jtApellidosAltaCuidador.getText();
         String dni = jtDNIAltaCuidador.getText();
-        String pass = jTPassEmpleado.getText();
+        char[] arrayC = jPasswordField1.getPassword();
+        String pass = new String(arrayC);
         String passMd5 = Utilidades.Utilidades_Control.getMD5(pass);
         String cargo = jCbCargo.getSelectedItem().toString();
 
@@ -228,7 +235,7 @@ public class frame_Cuidadores extends javax.swing.JFrame {
             return false;
         }
     }
-    
+
     public static boolean updateEmpleadoSinPass(String nombre, String apellidos, String dni, String especialidad, String cargo, Float salario_base) {
         try {
             // Obtenemos el cliente
@@ -296,7 +303,7 @@ public class frame_Cuidadores extends javax.swing.JFrame {
             return false;
         }
     }
-    
+
     public static boolean updateLoginSinPass(String nombre, String apellidos, String dni, String tipo_ususario) {
         try {
             // Obtenemos el cliente
@@ -373,7 +380,6 @@ public class frame_Cuidadores extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jtDNIAltaCuidador = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTPassEmpleado = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -383,6 +389,7 @@ public class frame_Cuidadores extends javax.swing.JFrame {
         jButtonGuardarAltaEmpleado = new javax.swing.JButton();
         jButtonListarEmpleados = new javax.swing.JButton();
         jButtonAtrasAltaEmpleado = new javax.swing.JButton();
+        jPasswordField1 = new javax.swing.JPasswordField();
         jPanel3 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
 
@@ -406,11 +413,11 @@ public class frame_Cuidadores extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel2.setForeground(new java.awt.Color(0, 0, 0));
 
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("  Empleados");
         jLabel9.setBackground(new java.awt.Color(255, 255, 255));
         jLabel9.setFont(new java.awt.Font("Jurassic Park", 1, 36)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("  Empleados");
 
         jTableEmpleados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -445,10 +452,10 @@ public class frame_Cuidadores extends javax.swing.JFrame {
             jTableEmpleados.getColumnModel().getColumn(5).setResizable(false);
         }
 
+        jBModificarAnimal.setText("Modificar");
         jBModificarAnimal.setBackground(new java.awt.Color(103, 0, 3));
         jBModificarAnimal.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jBModificarAnimal.setForeground(new java.awt.Color(255, 255, 255));
-        jBModificarAnimal.setText("Modificar");
         jBModificarAnimal.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jBModificarAnimalMouseEntered(evt);
@@ -463,10 +470,10 @@ public class frame_Cuidadores extends javax.swing.JFrame {
             }
         });
 
+        jBBorrarEmpleado.setText("Borrar");
         jBBorrarEmpleado.setBackground(new java.awt.Color(103, 0, 3));
         jBBorrarEmpleado.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jBBorrarEmpleado.setForeground(new java.awt.Color(255, 255, 255));
-        jBBorrarEmpleado.setText("Borrar");
         jBBorrarEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jBBorrarEmpleadoMouseEntered(evt);
@@ -481,8 +488,8 @@ public class frame_Cuidadores extends javax.swing.JFrame {
             }
         });
 
-        jButtonAtrasListarEmpleados.setBackground(new java.awt.Color(103, 0, 3));
         jButtonAtrasListarEmpleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Login/Imagen/hacia-atras (1).png"))); // NOI18N
+        jButtonAtrasListarEmpleados.setBackground(new java.awt.Color(103, 0, 3));
         jButtonAtrasListarEmpleados.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButtonAtrasListarEmpleadosMouseEntered(evt);
@@ -575,77 +582,77 @@ public class frame_Cuidadores extends javax.swing.JFrame {
         jPanel4.setForeground(new java.awt.Color(0, 0, 0));
         jPanel4.setMinimumSize(new java.awt.Dimension(503, 463));
 
+        jLabel11.setText("Nombre");
         jLabel11.setBackground(new java.awt.Color(255, 255, 255));
         jLabel11.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel11.setText("Nombre");
 
         jtNombreEditarCuidador1.setBackground(new java.awt.Color(255, 255, 255));
+        jtNombreEditarCuidador1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         jtNombreEditarCuidador1.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jtNombreEditarCuidador1.setForeground(new java.awt.Color(0, 0, 0));
-        jtNombreEditarCuidador1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
+        jLabel12.setText("Apellidos");
         jLabel12.setBackground(new java.awt.Color(255, 255, 255));
         jLabel12.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel12.setText("Apellidos");
 
         jtApellidosEditarCuidador1.setBackground(new java.awt.Color(255, 255, 255));
+        jtApellidosEditarCuidador1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         jtApellidosEditarCuidador1.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jtApellidosEditarCuidador1.setForeground(new java.awt.Color(0, 0, 0));
-        jtApellidosEditarCuidador1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
+        jLabel13.setText("Dni");
         jLabel13.setBackground(new java.awt.Color(255, 255, 255));
         jLabel13.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel13.setText("Dni");
 
         jtDNIEditarCuidador1.setBackground(new java.awt.Color(255, 255, 255));
+        jtDNIEditarCuidador1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         jtDNIEditarCuidador1.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jtDNIEditarCuidador1.setForeground(new java.awt.Color(0, 0, 0));
-        jtDNIEditarCuidador1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
+        jLabel14.setText("Pass");
         jLabel14.setBackground(new java.awt.Color(255, 255, 255));
         jLabel14.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel14.setText("Pass");
 
         jTPassEditarEmpleado1.setBackground(new java.awt.Color(255, 255, 255));
+        jTPassEditarEmpleado1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         jTPassEditarEmpleado1.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jTPassEditarEmpleado1.setForeground(new java.awt.Color(0, 0, 0));
-        jTPassEditarEmpleado1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
+        jLabel15.setText("Especialidad");
         jLabel15.setBackground(new java.awt.Color(255, 255, 255));
         jLabel15.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel15.setText("Especialidad");
 
         jcbEspecialidadEditarEmpleados1.setBackground(new java.awt.Color(255, 255, 255));
         jcbEspecialidadEditarEmpleados1.setForeground(new java.awt.Color(0, 0, 0));
 
+        jLabel16.setText("Cargo");
         jLabel16.setBackground(new java.awt.Color(255, 255, 255));
         jLabel16.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel16.setText("Cargo");
 
+        jCbEditarCargo1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Empleado", "Visitante", "Administrador" }));
         jCbEditarCargo1.setBackground(new java.awt.Color(255, 255, 255));
         jCbEditarCargo1.setForeground(new java.awt.Color(0, 0, 0));
-        jCbEditarCargo1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Empleado", "Visitante", "Administrador" }));
 
+        jLabel17.setText("Salario Base");
         jLabel17.setBackground(new java.awt.Color(255, 255, 255));
         jLabel17.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel17.setText("Salario Base");
 
         jtEditarSalarioEmpleado.setBackground(new java.awt.Color(255, 255, 255));
+        jtEditarSalarioEmpleado.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         jtEditarSalarioEmpleado.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jtEditarSalarioEmpleado.setForeground(new java.awt.Color(0, 0, 0));
-        jtEditarSalarioEmpleado.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
+        jButtonEditarEmpleado.setText("Guardar");
         jButtonEditarEmpleado.setBackground(new java.awt.Color(103, 0, 3));
         jButtonEditarEmpleado.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jButtonEditarEmpleado.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonEditarEmpleado.setText("Guardar");
         jButtonEditarEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButtonEditarEmpleadoMouseEntered(evt);
@@ -660,14 +667,14 @@ public class frame_Cuidadores extends javax.swing.JFrame {
             }
         });
 
+        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel18.setText("Editar   Empleado");
         jLabel18.setBackground(new java.awt.Color(255, 255, 255));
         jLabel18.setFont(new java.awt.Font("Jurassic Park", 1, 48)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel18.setText("Editar   Empleado");
 
-        jButtonAtrasEditarEmpleado.setBackground(new java.awt.Color(103, 0, 3));
         jButtonAtrasEditarEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Login/Imagen/hacia-atras (1).png"))); // NOI18N
+        jButtonAtrasEditarEmpleado.setBackground(new java.awt.Color(103, 0, 3));
         jButtonAtrasEditarEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButtonAtrasEditarEmpleadoMouseEntered(evt);
@@ -803,84 +810,79 @@ public class frame_Cuidadores extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(0, 0, 0));
 
         jtNombreAltaCuidador.setBackground(new java.awt.Color(255, 255, 255));
+        jtNombreAltaCuidador.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         jtNombreAltaCuidador.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jtNombreAltaCuidador.setForeground(new java.awt.Color(0, 0, 0));
         jtNombreAltaCuidador.setToolTipText("Introduzca el nombre del empleado:");
-        jtNombreAltaCuidador.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
+        jLabel2.setText("Nombre");
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Nombre");
 
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Alta   Empleado");
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Jurassic Park", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Alta   Empleado");
 
+        jLabel3.setText("Apellidos");
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Apellidos");
 
         jtApellidosAltaCuidador.setBackground(new java.awt.Color(255, 255, 255));
+        jtApellidosAltaCuidador.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         jtApellidosAltaCuidador.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jtApellidosAltaCuidador.setForeground(new java.awt.Color(0, 0, 0));
         jtApellidosAltaCuidador.setToolTipText("");
-        jtApellidosAltaCuidador.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
+        jLabel4.setText("Dni");
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("Dni");
 
         jtDNIAltaCuidador.setBackground(new java.awt.Color(255, 255, 255));
+        jtDNIAltaCuidador.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         jtDNIAltaCuidador.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jtDNIAltaCuidador.setForeground(new java.awt.Color(0, 0, 0));
-        jtDNIAltaCuidador.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
+        jLabel5.setText("Pass");
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel5.setText("Pass");
 
-        jTPassEmpleado.setBackground(new java.awt.Color(255, 255, 255));
-        jTPassEmpleado.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jTPassEmpleado.setForeground(new java.awt.Color(0, 0, 0));
-        jTPassEmpleado.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-
+        jLabel6.setText("Especialidad");
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel6.setText("Especialidad");
 
+        jLabel7.setText("Cargo");
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel7.setText("Cargo");
 
+        jLabel8.setText("Salario Base");
         jLabel8.setBackground(new java.awt.Color(255, 255, 255));
         jLabel8.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel8.setText("Salario Base");
 
         jtAltaSalarioEmpleado.setBackground(new java.awt.Color(255, 255, 255));
+        jtAltaSalarioEmpleado.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         jtAltaSalarioEmpleado.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jtAltaSalarioEmpleado.setForeground(new java.awt.Color(0, 0, 0));
-        jtAltaSalarioEmpleado.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
         jcbEspecialidadAltaEmpleados.setBackground(new java.awt.Color(255, 255, 255));
         jcbEspecialidadAltaEmpleados.setForeground(new java.awt.Color(0, 0, 0));
 
+        jCbCargo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Empleado", "Visitante", "Administrador" }));
         jCbCargo.setBackground(new java.awt.Color(255, 255, 255));
         jCbCargo.setForeground(new java.awt.Color(0, 0, 0));
-        jCbCargo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Empleado", "Visitante", "Administrador" }));
 
+        jButtonGuardarAltaEmpleado.setText("Guardar");
         jButtonGuardarAltaEmpleado.setBackground(new java.awt.Color(103, 0, 3));
         jButtonGuardarAltaEmpleado.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jButtonGuardarAltaEmpleado.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonGuardarAltaEmpleado.setText("Guardar");
         jButtonGuardarAltaEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButtonGuardarAltaEmpleadoMouseEntered(evt);
@@ -895,10 +897,10 @@ public class frame_Cuidadores extends javax.swing.JFrame {
             }
         });
 
+        jButtonListarEmpleados.setText("Listar Empleados");
         jButtonListarEmpleados.setBackground(new java.awt.Color(103, 0, 3));
         jButtonListarEmpleados.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jButtonListarEmpleados.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonListarEmpleados.setText("Listar Empleados");
         jButtonListarEmpleados.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButtonListarEmpleadosMouseEntered(evt);
@@ -913,8 +915,8 @@ public class frame_Cuidadores extends javax.swing.JFrame {
             }
         });
 
-        jButtonAtrasAltaEmpleado.setBackground(new java.awt.Color(103, 0, 3));
         jButtonAtrasAltaEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Login/Imagen/hacia-atras (1).png"))); // NOI18N
+        jButtonAtrasAltaEmpleado.setBackground(new java.awt.Color(103, 0, 3));
         jButtonAtrasAltaEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButtonAtrasAltaEmpleadoMouseEntered(evt);
@@ -928,6 +930,11 @@ public class frame_Cuidadores extends javax.swing.JFrame {
                 jButtonAtrasAltaEmpleadoActionPerformed(evt);
             }
         });
+
+        jPasswordField1.setBackground(new java.awt.Color(255, 255, 255));
+        jPasswordField1.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        jPasswordField1.setForeground(new java.awt.Color(0, 0, 0));
+        jPasswordField1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -950,12 +957,12 @@ public class frame_Cuidadores extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jtAltaSalarioEmpleado)
-                    .addComponent(jTPassEmpleado)
                     .addComponent(jtDNIAltaCuidador)
                     .addComponent(jtApellidosAltaCuidador)
                     .addComponent(jtNombreAltaCuidador)
                     .addComponent(jcbEspecialidadAltaEmpleados, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jCbCargo, 0, 289, Short.MAX_VALUE))
+                    .addComponent(jCbCargo, 0, 289, Short.MAX_VALUE)
+                    .addComponent(jPasswordField1))
                 .addGap(39, 39, 39))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(69, Short.MAX_VALUE)
@@ -990,7 +997,7 @@ public class frame_Cuidadores extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTPassEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -1016,9 +1023,9 @@ public class frame_Cuidadores extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel3.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel10.setBackground(new java.awt.Color(255, 255, 255));
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Login/Imagen/empleados.jpg"))); // NOI18N
         jLabel10.setText("jLabel10");
+        jLabel10.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -1201,7 +1208,7 @@ public class frame_Cuidadores extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonEditarEmpleadoActionPerformed
 
     private void jBBorrarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBorrarEmpleadoActionPerformed
-        
+
         int filaseleccionada = jTableEmpleados.getSelectedRow();
 
         if (filaseleccionada == -1) {
@@ -1214,7 +1221,7 @@ public class frame_Cuidadores extends javax.swing.JFrame {
 
             if (JOptionPane.OK_OPTION == confirmado) {
 
-                String sql = "DELETE FROM caregivers WHERE dni = '"+dni+"'";
+                String sql = "DELETE FROM caregivers WHERE dni = '" + dni + "'";
                 DBManagerZoo.transaccion(sql);
                 vaciarCaregiversTable();
                 rellenarTablaCaregivers();
@@ -1436,9 +1443,9 @@ public class frame_Cuidadores extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTPassEditarEmpleado1;
-    private javax.swing.JTextField jTPassEmpleado;
     private javax.swing.JTable jTableEmpleados;
     private javax.swing.JComboBox<String> jcbEspecialidadAltaEmpleados;
     private javax.swing.JComboBox<String> jcbEspecialidadEditarEmpleados1;

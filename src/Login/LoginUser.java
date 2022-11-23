@@ -36,6 +36,7 @@ public class LoginUser extends javax.swing.JFrame {
 
     private int x;
     private int y;
+
     /**
      * Creates new form LoginUser
      */
@@ -44,6 +45,7 @@ public class LoginUser extends javax.swing.JFrame {
         DBManagerZoo.connect();
         TextPrompt placeholcer = new TextPrompt("12345678A", jTUserLogin);
         TextPrompt placeholcer2 = new TextPrompt("contraseña", jPasswordField1);
+        ReproducirSonido(true);
     }
 
     public void ReproducirSonido(boolean seguir) {
@@ -279,7 +281,6 @@ public class LoginUser extends javax.swing.JFrame {
         String pass = new String(arrayC);
         String passMd5 = Utilidades.Utilidades_Control.getMD5(pass);
         System.out.println(passMd5);
-        
 
         if (dni.equals("") || pass.equals("")) {
 
@@ -307,6 +308,7 @@ public class LoginUser extends javax.swing.JFrame {
                         ReproducirSonido(seguir);
                         bbdd_Zoo_Interfaz.Panel_Admin openAdmin = new bbdd_Zoo_Interfaz.Panel_Admin(dni);
                         openAdmin.setVisible(true);
+
                         this.dispose();
 
                         break;
@@ -354,34 +356,34 @@ public class LoginUser extends javax.swing.JFrame {
 
     private void jButtonSalirLoginMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSalirLoginMouseEntered
         jButtonSalirLogin.setCursor(new Cursor(HAND_CURSOR));
-        jButtonSalirLogin.setBackground( new Color(217,165,9));
+        jButtonSalirLogin.setBackground(new Color(217, 165, 9));
         jButtonSalirLogin.setForeground(Color.BLACK);
     }//GEN-LAST:event_jButtonSalirLoginMouseEntered
 
     private void jButtonSalirLoginMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSalirLoginMouseExited
-        jButtonSalirLogin.setBackground( new Color(103,0,3));
+        jButtonSalirLogin.setBackground(new Color(103, 0, 3));
         jButtonSalirLogin.setForeground(Color.WHITE);
     }//GEN-LAST:event_jButtonSalirLoginMouseExited
 
     private void jButtonLoginMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonLoginMouseEntered
         jButtonLogin.setCursor(new Cursor(HAND_CURSOR));
-        jButtonLogin.setBackground( new Color(217,165,9));
+        jButtonLogin.setBackground(new Color(217, 165, 9));
         jButtonLogin.setForeground(Color.BLACK);
     }//GEN-LAST:event_jButtonLoginMouseEntered
 
     private void jButtonLoginMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonLoginMouseExited
-        jButtonLogin.setBackground( new Color(103,0,3));
+        jButtonLogin.setBackground(new Color(103, 0, 3));
         jButtonLogin.setForeground(Color.WHITE);
     }//GEN-LAST:event_jButtonLoginMouseExited
 
     private void jButtonRegistroMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonRegistroMouseEntered
         jButtonRegistro.setCursor(new Cursor(HAND_CURSOR));
-        jButtonRegistro.setBackground( new Color(217,165,9));
+        jButtonRegistro.setBackground(new Color(217, 165, 9));
         jButtonRegistro.setForeground(Color.BLACK);
     }//GEN-LAST:event_jButtonRegistroMouseEntered
 
     private void jButtonRegistroMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonRegistroMouseExited
-        jButtonRegistro.setBackground( new Color(103,0,3));
+        jButtonRegistro.setBackground(new Color(103, 0, 3));
         jButtonRegistro.setForeground(Color.WHITE);
     }//GEN-LAST:event_jButtonRegistroMouseExited
 

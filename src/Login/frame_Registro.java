@@ -23,8 +23,8 @@ public class frame_Registro extends javax.swing.JFrame {
         TextPrompt placeholcer = new TextPrompt("Nombre:", jTNombreLogin);
         TextPrompt placeholcer1 = new TextPrompt("Apellidos:", jTApellidosLogin);
         TextPrompt placeholcer2 = new TextPrompt("DNI:", jTDniLogin);
-        TextPrompt placeholcer3 = new TextPrompt("Contraseña :", jTPassLogin);
-        TextPrompt placeholcer4 = new TextPrompt("Repite la contraseña:", jTComprobarPassLogin);
+        TextPrompt placeholcer3 = new TextPrompt("Contraseña :", jPasswordField1);
+        TextPrompt placeholcer4 = new TextPrompt("Repite la contraseña:", jPasswordField2);
     }
 
     /**
@@ -46,12 +46,12 @@ public class frame_Registro extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jTDniLogin = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTPassLogin = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTComprobarPassLogin = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
+        jPasswordField1 = new javax.swing.JPasswordField();
+        jPasswordField2 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -101,20 +101,10 @@ public class frame_Registro extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Pass");
 
-        jTPassLogin.setBackground(new java.awt.Color(255, 255, 255));
-        jTPassLogin.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jTPassLogin.setForeground(new java.awt.Color(0, 0, 0));
-        jTPassLogin.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Repetir Pass");
-
-        jTComprobarPassLogin.setBackground(new java.awt.Color(255, 255, 255));
-        jTComprobarPassLogin.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jTComprobarPassLogin.setForeground(new java.awt.Color(0, 0, 0));
-        jTComprobarPassLogin.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
         jButton1.setBackground(new java.awt.Color(103, 0, 3));
         jButton1.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
@@ -135,6 +125,16 @@ public class frame_Registro extends javax.swing.JFrame {
             }
         });
 
+        jPasswordField1.setBackground(new java.awt.Color(255, 255, 255));
+        jPasswordField1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jPasswordField1.setForeground(new java.awt.Color(0, 0, 0));
+        jPasswordField1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+
+        jPasswordField2.setBackground(new java.awt.Color(255, 255, 255));
+        jPasswordField2.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jPasswordField2.setForeground(new java.awt.Color(0, 0, 0));
+        jPasswordField2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -151,31 +151,17 @@ public class frame_Registro extends javax.swing.JFrame {
                                     .addComponent(jLabel6)
                                     .addGap(209, 209, 209))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jLabel5)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jTDniLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(jLabel5)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(jTDniLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(jLabel3)
-                                                .addComponent(jLabel4))
-                                            .addGap(18, 18, 18)
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jTApellidosLogin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jTNombreLogin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTPassLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTComprobarPassLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(12, 12, 12))
+                                        .addComponent(jLabel3)
+                                        .addComponent(jLabel4))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jTApellidosLogin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTNombreLogin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -184,8 +170,15 @@ public class frame_Registro extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(jButton12)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPasswordField1)
+                            .addComponent(jPasswordField2))
+                        .addGap(12, 12, 12)))
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 538, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -193,6 +186,9 @@ public class frame_Registro extends javax.swing.JFrame {
                     .addComponent(jButton11)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jPasswordField1, jTApellidosLogin, jTDniLogin, jTNombreLogin});
+
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -218,11 +214,11 @@ public class frame_Registro extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTPassLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jTComprobarPassLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(62, 62, 62)
                 .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -233,7 +229,7 @@ public class frame_Registro extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel3, jTApellidosLogin, jTComprobarPassLogin, jTDniLogin, jTNombreLogin, jTPassLogin});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel3, jTApellidosLogin, jTDniLogin, jTNombreLogin});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -256,21 +252,31 @@ public class frame_Registro extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         String nombre = jTNombreLogin.getText();
+        if (!Utilidades.Utilidades_Control.contieneSoloLetras(nombre)) {
+            JOptionPane.showMessageDialog(null, "solo puede introducir letras en el nombre");
+            jTNombreLogin.setText("");
+        }
         String apellidos = jTApellidosLogin.getText();
+        if (!Utilidades.Utilidades_Control.contieneSoloLetras(apellidos)) {
+            JOptionPane.showMessageDialog(null, "solo puede introducir letras en los apellidos");
+            jTApellidosLogin.setText("");
+        }
+
         String dni = jTDniLogin.getText();
-        String pass = jTPassLogin.getText();
+        char[] arrayC = jPasswordField1.getPassword();
+        String pass = new String(arrayC);
+        char[] arrayD = jPasswordField1.getPassword();
+        String passComprobar = new String(arrayD);
         String passMd5 = Utilidades.Utilidades_Control.getMD5(pass);
-        String passComprobar = jTComprobarPassLogin.getText();
-        System.out.println(passMd5);
-        System.out.println(passComprobar);
+
         //variable boolean para comprobar las contraseñas
         Boolean passCorrecta = passMd5.equals(Utilidades.Utilidades_Control.getMD5(passComprobar));
 
         if (!passCorrecta) {
             //si las contraseñas no coinciden
             JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden, pruebe de nuevo");
-            jTPassLogin.setText("");
-            jTComprobarPassLogin.setText("");
+            jPasswordField1.setText("");
+            jPasswordField2.setText("");
 
         }
         //comprobamos dni
@@ -286,9 +292,9 @@ public class frame_Registro extends javax.swing.JFrame {
             jTNombreLogin.setText("");
             jTApellidosLogin.setText("");
             jTDniLogin.setText("");
-            jTPassLogin.setText("");
-            jTComprobarPassLogin.setText("");
-            int confirmado = JOptionPane.showConfirmDialog(null,"Usuario registrado, ¿quieres logearte?");
+            jPasswordField1.setText("");
+            jPasswordField2.setText("");
+            int confirmado = JOptionPane.showConfirmDialog(null, "Usuario registrado correctamente, ¿quieres logearte?");
 
             if (JOptionPane.OK_OPTION == confirmado) {
                 this.dispose();
@@ -350,10 +356,10 @@ public class frame_Registro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JTextField jTApellidosLogin;
-    private javax.swing.JTextField jTComprobarPassLogin;
     private javax.swing.JTextField jTDniLogin;
     private javax.swing.JTextField jTNombreLogin;
-    private javax.swing.JTextField jTPassLogin;
     // End of variables declaration//GEN-END:variables
 }

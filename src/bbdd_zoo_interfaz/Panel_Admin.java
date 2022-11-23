@@ -31,8 +31,6 @@ public class Panel_Admin extends javax.swing.JFrame {
 
     private int x;
     private int y;
-    private int a;
-    private int s;
 
     /**
      * Creates new form Panel_Admin
@@ -48,7 +46,7 @@ public class Panel_Admin extends javax.swing.JFrame {
         // Cargamos driver y conectamos con la BD
         DBManagerZoo.loadDriver();
         DBManagerZoo.connect();
-        
+
         rellenarTablaPrincipal();
         listAnimals();
         listCaregivers();
@@ -229,9 +227,9 @@ public class Panel_Admin extends javax.swing.JFrame {
         }
 
     }
-    
-    public void rellenarconCambios(){
-        
+
+    public void rellenarconCambios() {
+
         vaciarTablaPrincipal();
         TableColumnModel tableColumnModel = jTablePrincipal.getColumnModel();
         jTablePrincipal.removeColumn(new TableColumn(5));
@@ -247,7 +245,7 @@ public class Panel_Admin extends javax.swing.JFrame {
         tableColumn2.setHeaderValue("Especie");
         tableColumn3.setHeaderValue("Peso");
         jTablePrincipal.repaint();
-        
+
         try {
             ResultSet rs = DBManagerZoo.getTablaAnimals(DEFAULT_CURSOR, DISPOSE_ON_CLOSE);
             while (rs.next()) {
@@ -259,7 +257,7 @@ public class Panel_Admin extends javax.swing.JFrame {
                 DefaultTableModel model = (DefaultTableModel) jTablePrincipal.getModel();
                 Object[] row = {id, nombre, especie, peso};
                 model.addRow(row);
-                
+
                 jTablePrincipal.repaint();
 
             }
@@ -314,7 +312,7 @@ public class Panel_Admin extends javax.swing.JFrame {
 
             // Si no existe el Resultset
             if (rs == null) {
-                System.out.println("Error. ResultSet null.");
+                //System.out.println("Error. ResultSet null.");
                 return false;
             }
 
@@ -1031,6 +1029,11 @@ public class Panel_Admin extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPanel1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jPanel1FocusGained(evt);
+            }
+        });
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("*  Jurassic  Zoo  *");
@@ -1291,45 +1294,52 @@ public class Panel_Admin extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButtonCerrarSesion)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonSalir))
+                    .addComponent(jLabelSesionUser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonSuperAdmin)
+                .addGap(18, 18, 18))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(596, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButtonCerrarSesion)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButtonSalir))
-                            .addComponent(jLabelSesionUser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonSuperAdmin)
-                        .addGap(12, 12, 12))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(45, 45, 45)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButtonAnimal)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButtonEmpleados))
-                            .addComponent(jButtonModificarTarea))
+                        .addComponent(jButtonModificarTarea)
+                        .addGap(18, 18, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonAnimal)
+                        .addGap(18, 18, 18)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButtonEmpleados)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButtonTareas)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButtonEspecies))
-                            .addComponent(jButtonHistoricoTareas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jButtonTareas)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButtonEspecialidad)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButtonTrabajos))
-                            .addComponent(jButtonCompletarTarea))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jButtonEspecies)
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButtonHistoricoTareas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(112, 112, 112)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButtonCompletarTarea)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButtonEspecialidad)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonTrabajos)))
+                .addGap(44, 44, 44))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButtonAnimal, jButtonCompletarTarea, jButtonEmpleados, jButtonEspecialidad, jButtonEspecies, jButtonHistoricoTareas, jButtonModificarTarea, jButtonTareas, jButtonTrabajos});
+
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -1377,13 +1387,13 @@ public class Panel_Admin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAnimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnimalActionPerformed
-        
+
         frame_Animal open = new frame_Animal();
         open.setVisible(true);
         //todo esto se puede borrar, es la prueba de la tabla al pulsar en animales para modificar las columanas a mostrar
         //rellenarconCambios();
-        
-        
+
+
     }//GEN-LAST:event_jButtonAnimalActionPerformed
 
     private void jButtonEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEmpleadosActionPerformed
@@ -1419,10 +1429,10 @@ public class Panel_Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonTrabajosActionPerformed
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
-//        vaciarTablaPrincipal();
-//        rellenarTablaPrincipal();
+        vaciarTablaPrincipal();
+        rellenarTablaPrincipal();
         int fila = jTablePrincipal.getSelectedRow();
-        if (fila < 0) {
+        if (fila > 0) {
             jButtonModificarTarea.setBackground(new Color(103, 0, 3));
             jButtonModificarTarea.setForeground(Color.WHITE);
             jButtonCompletarTarea.setBackground(new Color(103, 0, 3));
@@ -1431,8 +1441,7 @@ public class Panel_Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowGainedFocus
 
     private void jButtonModificarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarTareaActionPerformed
-        
-        
+
         //Guardamos en un entero la fila seleccionada.
         int filaseleccionada = jTablePrincipal.getSelectedRow();
 
@@ -1442,7 +1451,6 @@ public class Panel_Admin extends javax.swing.JFrame {
 
             jFrameEditarTarea.setVisible(true);
 
-            
             //String ayuda = tabla.getValueAt(filaseleccionada, num_columna).toString());
             String animal = (String) jTablePrincipal.getValueAt(filaseleccionada, 1);
             String cuidador = (String) jTablePrincipal.getValueAt(filaseleccionada, 2);
@@ -1494,7 +1502,7 @@ public class Panel_Admin extends javax.swing.JFrame {
                     dateMes = "November";
                     break;
                 case "12":
-                    dateMes = "Dicember";
+                    dateMes = "December";
                     break;
 
                 default:
@@ -1502,8 +1510,6 @@ public class Panel_Admin extends javax.swing.JFrame {
             }
             jcEditarTarea.setSelectedItem(tarea);
             jcEditarCuidador.setSelectedItem(cuidador);
-            
-            
             jcEditarAnimal.setSelectedItem(animal);
             dateTimePickerEditar.datePicker.setText(dia + " " + dateMes + " " + year);
             dateTimePickerEditar.timePicker.setText(time);
@@ -2035,8 +2041,15 @@ public class Panel_Admin extends javax.swing.JFrame {
     private void jButtonAnimalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonAnimalMouseClicked
         jButtonAnimal.setBackground(new Color(217, 165, 9));
         jButtonAnimal.setForeground(Color.BLACK);
-        jButtonAnimal.setCursor(new Cursor(HAND_CURSOR)); 
+        jButtonAnimal.setCursor(new Cursor(HAND_CURSOR));
     }//GEN-LAST:event_jButtonAnimalMouseClicked
+
+    private void jPanel1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPanel1FocusGained
+        jButtonModificarTarea.setBackground(new Color(103, 0, 3));
+        jButtonModificarTarea.setForeground(Color.WHITE);
+        jButtonCompletarTarea.setBackground(new Color(103, 0, 3));
+        jButtonCompletarTarea.setForeground(Color.WHITE);
+    }//GEN-LAST:event_jPanel1FocusGained
 
     /**
      * @param args the command line arguments

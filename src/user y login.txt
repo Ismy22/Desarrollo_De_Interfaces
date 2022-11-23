@@ -1,0 +1,11 @@
+administrador
+user 76652552s
+pass 2203
+
+visitante
+user 24295725c
+pass 1234
+
+empleado
+user 24219583k
+pass 1234
